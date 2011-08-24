@@ -141,7 +141,74 @@
     <test:suite>
       <h2>Inline Text Transforms</h2>
       
+      <test:suite>
+	<h3>Emphasis</h3>
+	
+	<p>Without any role, emphasis is translated to an HTML em element</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:emphasis>Hello</cw:emphasis>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:em>Hello</html:em>
+	  </test:expected>
+	</test:assert-transform>
+	
+	<p>When given the 'strong' role, emphasis is translated to an HTML strong element</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:emphasis role="strong">Hello</cw:emphasis>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:strong>Hello</html:strong>
+	  </test:expected>
+	</test:assert-transform>
+	
+	<p>Any other role is used to set a class on the HTML em element</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:emphasis role="danger">Hello</cw:emphasis>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:em class="courseware-emphasis-danger">Hello</html:em>
+	  </test:expected>
+	</test:assert-transform>
+	
+      </test:suite>
       
+      <test:suite>
+	<h2>Links</h2>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:link href="http://www.example.com">Link Text</cw:link>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:a href="http://www.example.com">Link Text</html:a>
+	  </test:expected>
+	</test:assert-transform>
+      </test:suite>
+      
+      <test:suite>
+	<h2>Inline Code</h2>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:code>% rm -rf *</cw:code>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:code>% rm -rf *</html:code>
+	  </test:expected>
+	</test:assert-transform>
+      </test:suite>
     </test:suite>
   </xsl:template>
 </xsl:stylesheet>

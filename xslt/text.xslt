@@ -53,4 +53,31 @@
       <xsl:apply-templates/>
     </html:td>
   </xsl:template>
+
+  <xsl:template match="cw:emphasis[@role='strong']">
+    <html:strong>
+      <xsl:apply-templates/>
+    </html:strong>
+  </xsl:template>
+  
+  <xsl:template match="cw:emphasis">
+    <html:em>
+      <xsl:if test="@role">
+	<xsl:attribute name="class" select="concat('courseware-emphasis-', @role)"/>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </html:em>
+  </xsl:template>
+  
+  <xsl:template match="cw:link">
+    <html:a href="{@href}">
+      <xsl:apply-templates/>
+    </html:a>
+  </xsl:template>
+
+  <xsl:template match="cw:code">
+    <html:code>
+      <xsl:apply-templates/>
+    </html:code>
+  </xsl:template>
 </xsl:stylesheet>
