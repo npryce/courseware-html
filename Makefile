@@ -9,7 +9,7 @@ build/testing/%.xslt: tests/%.xslt xsltunit/xsltunit.xslt
 	@mkdir -p $(dir $@)
 	saxon -xsl:xsltunit/xsltunit.xslt -s:$< -o:$@
 
-build/testing/results.xml: $(XSLT_TESTS:tests/%.xslt=build/testing/%.xslt)
+build/testing/results.xml: $(XSLT_TESTS:tests/%.xslt=build/testing/%.xslt) $(XSLT)
 	saxon -xsl:build/testing/all-tests.xslt -it:all-tests -o:$@
 
 build/testing/report.html: build/testing/results.xml xsltunit/report.xslt
