@@ -136,7 +136,42 @@
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
-    </test:suite>
+      
+      <test:suite>
+	<h3>Program Listings</h3>
+	<p>Programlistings are translated into HTML pre elements.</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:programlisting>
+	      int main(int argc, char **argv);
+	    </cw:programlisting>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:pre>
+	      int main(int argc, char **argv);
+	    </html:pre>
+	  </test:expected>
+	</test:assert-transform>
+	
+	<p>The language is translated into a class on the pre element.</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:programlisting lang="java">
+	      throw null;
+	    </cw:programlisting>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:pre class="courseware-programlisting-java">
+	      throw null;
+	    </html:pre>
+	  </test:expected>
+	</test:assert-transform>
+      </test:suite>
+    </test:suite> <!-- Block transforms -->
     
     <test:suite>
       <h2>Inline Text Transforms</h2>
@@ -209,6 +244,6 @@
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
-    </test:suite>
+    </test:suite> <!-- Inline text transforms -->
   </xsl:template>
 </xsl:stylesheet>

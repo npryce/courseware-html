@@ -53,6 +53,15 @@
       <xsl:apply-templates/>
     </html:td>
   </xsl:template>
+  
+  <xsl:template match="cw:programlisting">
+    <html:pre>
+      <xsl:if test="@lang">
+	<xsl:attribute name="class" select="concat('courseware-programlisting-', @lang)"/>
+      </xsl:if>
+      <xsl:apply-templates/>
+    </html:pre>
+  </xsl:template>
 
   <xsl:template match="cw:emphasis[@role='strong']">
     <html:strong>
