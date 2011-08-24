@@ -218,7 +218,7 @@
       </test:suite>
       
       <test:suite>
-	<h2>Links</h2>
+	<h3>Links</h3>
 	
 	<test:assert-transform>
 	  <test:original>
@@ -232,7 +232,7 @@
       </test:suite>
       
       <test:suite>
-	<h2>Inline Code</h2>
+	<h3>Inline Code</h3>
 	
 	<test:assert-transform>
 	  <test:original>

@@ -31,7 +31,7 @@
   </xsl:template>
   
   <xsl:template match="test:assert-transform">
-    <test:assert-transform>
+    <test:assert>
       <xslo:variable name="original">
 	<xsl:copy-of select="test:original/*"/>
       </xslo:variable>
@@ -54,7 +54,7 @@
       <test:transformed>
 	<xslo:copy-of select="$transformed"/>
       </test:transformed>
-    </test:assert-transform>
+    </test:assert>
   </xsl:template>
   
   <xsl:template match="@*|node()">

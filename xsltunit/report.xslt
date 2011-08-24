@@ -25,7 +25,7 @@
 	<h1><xsl:copy-of select="$title"/></h1>
 	
 	<p class="summary">
-	  <xsl:value-of select="count(//test:assert)"/> tests:
+	  <xsl:value-of select="count(//test:assert)"/> assertions:
 	  <xsl:value-of select="count(//test:assert[@result='passed'])"/> passed,
 	  <xsl:value-of select="count(//test:assert[@result='failed'])"/> failed.
 	</p>
@@ -48,14 +48,13 @@
     </div>
   </xsl:template>
   
-  <xsl:template match="test:assert">
+  <xsl:template match="test:assert[@that]">
     <xsl:if test="@result = 'failed'">
       <p class="failed"><xsl:value-of select="@that"/></p>
     </xsl:if>
-    <xsl:apply-templates select="*"/>
   </xsl:template>
   
-  <xsl:template match="test:assert-transform">
+  <xsl:template match="test:assert[test:transformed]">
     <xsl:if test="@result = 'failed'">
       <div class="diagnostics">
 	<p>Transform failed:</p>
@@ -66,7 +65,6 @@
 	</table>
       </div>
     </xsl:if>
-    <xsl:apply-templates select="*"/>
   </xsl:template>
   
   <xsl:template match="test:*"/>
