@@ -24,10 +24,19 @@
       <body>
 	<h1><xsl:copy-of select="$title"/></h1>
 	
-	<p class="summary">
+	<xsl:variable name="passed" select="count(//test:assert[@result='passed'])"/>
+	<xsl:variable name="failed" select="count(//test:assert[@result='failed'])"/>
+	
+	<p>
+	  <xsl:attribute name="class">
+	    <xsl:choose>
+	      <xsl:when test="$failed = 0">summary passed</xsl:when>
+	      <xsl:otherwise>summary failed</xsl:otherwise>
+	    </xsl:choose>
+	  </xsl:attribute>
 	  <xsl:value-of select="count(//test:assert)"/> assertions:
-	  <xsl:value-of select="count(//test:assert[@result='passed'])"/> passed,
-	  <xsl:value-of select="count(//test:assert[@result='failed'])"/> failed.
+	  <xsl:value-of select="$passed"/> passed,
+	  <xsl:value-of select="$failed"/> failed.
 	</p>
 	
 	<xsl:apply-templates/>

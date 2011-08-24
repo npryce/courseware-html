@@ -4,7 +4,7 @@
 		xmlns:test="http://www.natpryce.com/testxslt/1.0"
 		xmlns:xslo="http://www.natpryce.com/testxslt/1.0/xsltoutput">
   
-  <xsl:output method="xml" indent="yes"/>
+  <xsl:output method="xml" indent="no"/>
   <xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
   
   <xsl:template match="xsl:import">

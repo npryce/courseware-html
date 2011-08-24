@@ -7,13 +7,15 @@
                 xmlns:cw="http://www.natpryce.com/courseware/1.0"
                 xmlns:test="http://www.natpryce.com/testxslt/1.0">
 
+  <test:import href="slide-tests.xslt"/>
   <test:import href="text-tests.xslt"/>
   
-  <xsl:output method="xml" indent="yes"/>
+  <xsl:output method="xml"/>
   
   <xsl:template name="all-tests">
     <test:suite>
       <h1>Courseware to HTML Transformation</h1>
+      <xsl:call-template name="slide-tests"/>
       <xsl:call-template name="text-tests"/>
     </test:suite>
   </xsl:template>

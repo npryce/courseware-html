@@ -7,8 +7,10 @@ td, th                    { padding: 4px;
 			    font-weight: normal; 
 			    text-align: left; }
 
-.xmlverb-default          { color: #333333; background-color: #ffffff;
-                            font-family: monospace }
+.xmlverb-default          { color: #333333; 
+			    background-color: #ffffff;
+                            font-family: monospace; 
+			    white-space: nowrap; }
 .xmlverb-element-name     { color: #990000 }
 .xmlverb-element-nsprefix { color: #666600 }
 .xmlverb-attr-name        { color: #660000 }
@@ -27,3 +29,4 @@ td, th                    { padding: 4px;
 .assert                   { padding: 0.2em;
 			    margin-left: 3em; 
 			    margin-right: 3em; }
+.summary                  { padding: 0.25em; }
