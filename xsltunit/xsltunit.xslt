@@ -4,7 +4,7 @@
 		xmlns:test="http://www.natpryce.com/testxslt/1.0"
 		xmlns:xslo="http://www.natpryce.com/testxslt/1.0/xsltoutput">
   
-  <xsl:output method="xml" indent="no"/>
+  <xsl:output method="xml" indent="yes"/>
   <xsl:namespace-alias stylesheet-prefix="xslo" result-prefix="xsl"/>
   
   <xsl:template match="xsl:import">
@@ -27,6 +27,24 @@
       </xslo:attribute>
       
       <xsl:apply-templates/>
+    </test:assert>
+  </xsl:template>
+  
+  <xsl:template match="test:assert-equal|test:assert-equals">
+    <test:assert>
+      <xslo:variable name="actual" select="{@actual}"/>
+      <xslo:variable name="expected" select="{@expected}"/>
+      
+      <xslo:attribute name="result">
+	<xslo:choose>
+	  <xslo:when test="deep-equal($actual, $expected)">passed</xslo:when>
+	  <xslo:otherwise>failed</xslo:otherwise>
+	</xslo:choose>
+      </xslo:attribute>
+      
+      <test:expr><xsl:value-of select="@actual"/></test:expr>
+      <test:actual><xslo:value-of select="$actual"/></test:actual>
+      <test:expected><xslo:value-of select="$expected"/></test:expected>
     </test:assert>
   </xsl:template>
   
@@ -55,6 +73,23 @@
 	<xslo:copy-of select="$transformed"/>
       </test:transformed>
     </test:assert>
+  </xsl:template>
+  
+  <xsl:template match="test:show-working">
+    <test:show-working>
+      <xslo:copy-of select="{@select}"/>
+    </test:show-working>
+  </xsl:template>
+  
+  <xsl:template match="test:suite|test:original|test:expected|test:transformed">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="test:*">
+      <xsl:value-of select="error(test:unknown-element, concat('Unknown test element ',name()))"/>
   </xsl:template>
   
   <xsl:template match="@*|node()">

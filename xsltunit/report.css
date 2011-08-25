@@ -1,16 +1,19 @@
-body                      { font-family: sans-serif; }
+body                      { font-family: sans-serif; 
+			    background-color: white; }
 
 table                     { border-collapse: collapse; 
-			    margin-bottom: 1em; }
+			    margin-bottom: 1em;
+			    background-color: white; }
 table, tr, td, th         { border: 1px solid #444; }
 td, th                    { padding: 4px;
-			    font-weight: normal; 
+			    font-weight: normal;
 			    text-align: left; }
 
 .xmlverb-default          { color: #333333; 
 			    background-color: #ffffff;
-                            font-family: monospace; 
-			    white-space: nowrap; }
+                            font-family: monospace;
+			    white-space: nowrap;
+			    margin-bottom: 1em; }
 .xmlverb-element-name     { color: #990000 }
 .xmlverb-element-nsprefix { color: #666600 }
 .xmlverb-attr-name        { color: #660000 }

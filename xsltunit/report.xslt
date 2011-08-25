@@ -59,21 +59,41 @@
   
   <xsl:template match="test:assert[@that]">
     <xsl:if test="@result = 'failed'">
-      <p class="failed"><xsl:value-of select="@that"/></p>
+      <p class="failed">Failed: <xsl:value-of select="@that"/></p>
     </xsl:if>
   </xsl:template>
   
-  <xsl:template match="test:assert[test:transformed]">
+  <xsl:template match="test:assert[test:actual and test:expected]">
+    <xsl:if test="@result = 'failed'">
+      <div class="diagnostics">
+	<table>
+	  <tr><th>Expression</th><td><xsl:apply-templates select="test:expr"/></td></tr>
+	  <tr><th>Expected</th><td><xsl:apply-templates select="test:expected"/></td></tr>
+	  <tr><th>Actual</th><td><xsl:apply-templates select="test:actual"/></td></tr>
+	</table>
+      </div>
+    </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="test:assert[test:original and test:expected and test:transformed]">
     <xsl:if test="@result = 'failed'">
       <div class="diagnostics">
 	<p>Transform failed:</p>
 	<table>
-	  <tr><th>Original</th><td><xsl:apply-templates select="test:original/*" mode="xmlverb"/></td></tr>
-	  <tr><th>Expected</th><td><xsl:apply-templates select="test:expected/*" mode="xmlverb"/></td></tr>
-	  <tr><th>Actual</th><td><xsl:apply-templates select="test:transformed/*" mode="xmlverb"/></td></tr>
+	  <tr><th>Original</th><td><xsl:apply-templates select="test:original"/></td></tr>
+	  <tr><th>Expected</th><td><xsl:apply-templates select="test:expected"/></td></tr>
+	  <tr><th>Actual</th><td><xsl:apply-templates select="test:transformed"/></td></tr>
 	</table>
       </div>
     </xsl:if>
+  </xsl:template>
+  
+  <xsl:template match="test:original|test:expected|test:transformed|test:actual|test:expr|test:show-working">
+    <div class="xmlverb-default">
+      <xsl:apply-templates mode="xmlverb">
+        <xsl:with-param name="indent-elements" select="true()"/>
+      </xsl:apply-templates>
+    </div>
   </xsl:template>
   
   <xsl:template match="test:*"/>
