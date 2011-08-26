@@ -10,7 +10,7 @@
   
   
   <xsl:template match="cw:slide">
-    <div class="slide">
+    <div class="courseware-slide">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
@@ -25,4 +25,10 @@
     </div>
   </xsl:template>
   
+  <xsl:template match="cw:visual">
+    <img class="courseware-slide-visual" src="{@href}"/>
+  </xsl:template>
+  
+  <xsl:template match="cw:notes"/>
+
 </xsl:stylesheet>

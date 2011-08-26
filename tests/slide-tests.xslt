@@ -16,6 +16,8 @@
       <test:suite>
 	<h3>Slide is Translated to a Section with a Title</h3>
 	
+	<p>Slides can contain text</p>
+	
 	<test:assert-transform>
 	  <test:original>
 	    <cw:slide>
@@ -27,7 +29,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:div class="slide">
+	    <html:div class="courseware-slide">
 	      <html:h1>A Slide</html:h1>
 	      <html:div class="courseware-slide-vml">
 		<html:p>An example of a slide with some text on it.</html:p>
@@ -36,6 +38,43 @@
 	  </test:expected>
 	</test:assert-transform>
 	
+	<p>Slides can contain just images</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:slide>
+	      <cw:title>Another Slide</cw:title>
+	      <cw:visual href="../visuals/something.svg"/>
+	    </cw:slide>
+	  </test:original>
+	  <test:expected>
+	    <div class="courseware-slide">
+	      <html:h1>Another Slide</html:h1>
+	      <img class="courseware-slide-visual" src="../visuals/something.svg"/>
+	    </div>
+	  </test:expected>
+	</test:assert-transform>
+	
+	<p>Notes are skipped</p>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:slide>
+	      <cw:title>Another Slide</cw:title>
+	      <cw:visual href="../visuals/something.svg"/>
+	      <cw:notes>
+		<cw:student><cw:para>Should not be shown</cw:para></cw:student>
+		<cw:presenter><cw:para>Should not be shown either</cw:para></cw:presenter>
+	      </cw:notes>
+	    </cw:slide>
+	  </test:original>
+	  <test:expected>
+	    <html:div class="courseware-slide">
+	      <html:h1>Another Slide</html:h1>
+	      <html:img class="courseware-slide-visual" src="../visuals/something.svg"/>
+	    </html:div>
+	  </test:expected>
+	</test:assert-transform>
       </test:suite>
     </test:suite>
   </xsl:template>
