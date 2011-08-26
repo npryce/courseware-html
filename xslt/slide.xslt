@@ -30,5 +30,4 @@
   </xsl:template>
   
   <xsl:template match="cw:notes"/>
-
 </xsl:stylesheet>

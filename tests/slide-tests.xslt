@@ -75,6 +75,31 @@
 	    </html:div>
 	  </test:expected>
 	</test:assert-transform>
+	
+	<h3>Licensing Information Is Not Displayed Next To the Slide</h3>
+	
+	<test:assert-transform>
+	  <test:original>
+	    <cw:slide>
+	      <cw:title>Slide with License</cw:title>
+	      <cw:visual href="foo">
+		<cw:copyright>
+		  <cw:year>2007</cw:year>
+		  <cw:holder>Copyright Owner</cw:holder>
+		</cw:copyright>
+		<cw:license href="license-url">License Description</cw:license>
+	      </cw:visual>
+	    </cw:slide>
+	  </test:original>
+	  
+	  <test:expected>
+	    <div class="courseware-slide">
+	      <html:h1>Slide with License</html:h1>
+	      <img class="courseware-slide-visual" src="foo"/>
+	    </div>
+	  </test:expected>
+	  
+	</test:assert-transform>
       </test:suite>
     </test:suite>
   </xsl:template>
