@@ -5,7 +5,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:fn="http://www.w3.org/2005/xpath-functions"
                 xmlns:cw="http://www.natpryce.com/courseware/1.0"
-                xmlns:test="http://www.natpryce.com/testxslt/1.0">
+                xmlns:test="http://www.natpryce.com/xsltest/1.0">
 
   <test:import href="presentation-tests.xslt"/>
   <test:import href="slide-tests.xslt"/>
