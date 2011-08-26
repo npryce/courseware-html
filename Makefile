@@ -3,6 +3,8 @@
 VERSION=SNAPSHOT
 PROJECT=courseware-html
 
+DIST=$(PROJECT)-$(VERSION)
+
 XSLT:=$(shell find xslt -name '*.xslt')
 XSLT_TESTS=$(shell find tests -name '*.xslt')
 
@@ -16,7 +18,7 @@ DECK=lib/imakewebthings-deck.js-46d52ce
 JQUERY_FILES=$(wildcard $(JQUERY)/*.js)
 DECK_FILES=$(DECK)/modernizr.custom.js $(DECK)/core $(DECK)/themes $(DECK)/extensions
 
-DIST_DIR=build/$(PROJECT)-$(VERSION)
+DIST_DIR=build/$(DIST)
 
 SKELETON_FILES=$(JQUERY_FILES:$(JQUERY)/%=$(DIST_DIR)/skeleton/%) \
                $(DECK_FILES:$(DECK)/%=$(DIST_DIR)/skeleton/deck/%)
@@ -24,7 +26,10 @@ SKELETON_FILES=$(JQUERY_FILES:$(JQUERY)/%=$(DIST_DIR)/skeleton/%) \
 
 all: check dist
 
-dist: $(SKELETON_FILES) $(XSLT:%=$(DIST_DIR)/%)
+dist: build/$(DIST).tar.gz
+
+build/$(DIST).tar.gz: $(SKELETON_FILES) $(XSLT:%=$(DIST_DIR)/%)
+	tar cvz -f $@ -C build $(DIST)
 
 build/testing/%.xslt: tests/%.xslt $(XSLTEST_HOME)/xsltest.xslt
 	@mkdir -p $(dir $@)
