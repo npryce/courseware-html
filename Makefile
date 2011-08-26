@@ -6,7 +6,9 @@ PROJECT=courseware-html
 XSLT:=$(shell find xslt -name '*.xslt')
 XSLT_TESTS=$(shell find tests -name '*.xslt')
 
+ifndef XSLTEST_HOME
 XSLTEST_HOME=../xsltest/src
+endif
 
 JQUERY=lib/jquery-1.6.2
 DECK=lib/imakewebthings-deck.js-46d52ce
@@ -20,7 +22,9 @@ SKELETON_FILES=$(JQUERY_FILES:$(JQUERY)/%=$(DIST_DIR)/skeleton/%) \
                $(DECK_FILES:$(DECK)/%=$(DIST_DIR)/skeleton/deck/%)
 
 
-all: check $(SKELETON_FILES) $(DIST_DIR)/xslt
+all: check dist
+
+dist: $(SKELETON_FILES) $(XSLT:%=$(DIST_DIR)/%)
 
 build/testing/%.xslt: tests/%.xslt $(XSLTEST_HOME)/xsltest.xslt
 	@mkdir -p $(dir $@)
@@ -46,8 +50,9 @@ $(DIST_DIR)/skeleton/deck/%: $(DECK)/%
 	mkdir -p $(dir $@)
 	cp -r  $< $@
 
-$(DIST_DIR)/xslt: check
-	cp -r xslt/ $(DIST_DIR)
+$(DIST_DIR)/xslt/%: xslt/%
+	mkdir -p $(dir $@)
+	cp  $< $@
 
 clean:
 	rm -rf build
