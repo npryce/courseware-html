@@ -8,6 +8,9 @@
   
   <xsl:import href="slide.xslt"/>
   
+  <xsl:param name="deck-theme" select="'web-2.0'"/>
+  <xsl:param name="deck-transition" select="'horizontal-slide'"/>
+  
   <xsl:template match="cw:presentation">
     <html>
       <head>
@@ -17,8 +20,8 @@
 	<link rel="stylesheet" href="deck/extensions/navigation/deck.navigation.css"/>
 	<link rel="stylesheet" href="deck/extensions/status/deck.status.css"/>
 	<link rel="stylesheet" href="deck/extensions/hash/deck.hash.css"/>
-	<link rel="stylesheet" href="deck/themes/style/web-2.0.css"/>
-	<link rel="stylesheet" href="deck/themes/transition/horizontal-slide.css"/>
+	<link rel="stylesheet" href="deck/themes/style/{$deck-theme}.css"/>
+	<link rel="stylesheet" href="deck/themes/transition/${deck-transition}.css"/>
 	<script src="jquery-1.6.2.min.js"></script>
 	<script src="deck/modernizr.custom.js"></script>
 	<script>
