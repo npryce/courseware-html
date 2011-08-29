@@ -47,6 +47,11 @@ check: build/testing/report.html $(XSLTEST_HOME)/test-abort-build.xslt
 	    saxon -xsl:$(XSLTEST_HOME)/test-abort-build.xslt -s:build/testing/results.xml; \
 	fi
 
+build/example/tutorial.html: example/tutorial.presentation $(SKELETON_FILES)
+	@mkdir -p $(dir $@)
+	saxon -xsl:xslt/presentation.xslt -s:$< -o:$@
+	cp -R build/$(DIST)/skeleton/* $(dir $@)/
+
 $(DIST_DIR)/skeleton/%: $(JQUERY)/%
 	mkdir -p $(dir $@)
 	cp -r $< $@

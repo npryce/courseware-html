@@ -10,6 +10,7 @@
   <test:import href="presentation-tests.xslt"/>
   <test:import href="slide-tests.xslt"/>
   <test:import href="text-tests.xslt"/>
+  <test:import href="defaultns-tests.xslt"/>
   
   <xsl:output method="xml" indent="yes"/>
   
@@ -19,6 +20,7 @@
       <xsl:call-template name="presentation-tests"/>
       <xsl:call-template name="slide-tests"/>
       <xsl:call-template name="text-tests"/>
+      <xsl:call-template name="defaultns-tests"/>
     </test:suite>
   </xsl:template>
 </xsl:stylesheet>

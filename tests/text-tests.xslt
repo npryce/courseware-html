@@ -7,7 +7,7 @@
                 xmlns:cw="http://www.natpryce.com/courseware/1.0"
                 xmlns:test="http://www.natpryce.com/xsltest/1.0">
 
-  <xsl:import href="../xslt/text.xslt"/>
+  <xsl:import href="../xslt/presentation.xslt"/>
   
   <xsl:template name="text-tests">
     <test:suite>
