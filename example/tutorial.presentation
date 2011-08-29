@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<presentation xmlns="http://www.natpryce.com/courseware/1.0"
-	      status="incomplete">
-  <title>CourseWare/HTML</title>
+<presentation status="incomplete" xmlns="http://www.natpryce.com/courseware/1.0">
+  <title>Courseware/HTML</title>
 
   <slide>
     <title>Introduction</title>
 
-    <visual></visual>
+    <vml>
+      <para>This is a "vml" slide (horrible term but we're stuck with
+      it).</para>
+
+      <para>It contains text with some basic formatting:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Emphasis</para>
+        </listitem>
+
+        <listitem>
+          <para>Code</para>
+        </listitem>
+
+        <listitem>
+          <para>Ordered, Itemized and Definition Lists</para>
+        </listitem>
+
+        <listitem>
+          <para>Links</para>
+        </listitem>
+      </itemizedlist>
+    </vml>
 
     <notes>
       <student>
@@ -25,9 +47,9 @@
   </slide>
 
   <slide>
-    <title>Another Slide</title>
+    <title>A Slide with an Image</title>
 
-    <visual></visual>
+    <visual fileref="walk.jpg"></visual>
 
     <notes>
       <student></student>

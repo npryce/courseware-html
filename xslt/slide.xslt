@@ -16,7 +16,7 @@
   </xsl:template>
   
   <xsl:template match="cw:slide/cw:title">
-    <h1><xsl:apply-templates/></h1>
+    <h2><xsl:apply-templates/></h2>
   </xsl:template>
   
   <xsl:template match="cw:vml">
@@ -26,7 +26,7 @@
   </xsl:template>
   
   <xsl:template match="cw:visual">
-    <img class="courseware-slide-visual" src="{@href}"/>
+    <img class="courseware-slide-visual" src="{resolve-uri(@fileref,base-uri())}"/>
   </xsl:template>
   
   <xsl:template match="cw:notes"/>

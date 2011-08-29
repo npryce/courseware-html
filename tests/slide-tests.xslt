@@ -14,7 +14,7 @@
       <h2>Slide Transforms</h2>
       
       <test:suite>
-	<h3>Slide is Translated to a Section with a Title</h3>
+	<h3>Slide is Translated to a Div with an H2</h3>
 	
 	<p>Slides can contain text</p>
 	
@@ -30,7 +30,7 @@
 	  
 	  <test:expected>
 	    <html:div class="courseware-slide">
-	      <html:h1>A Slide</html:h1>
+	      <html:h2>A Slide</html:h2>
 	      <html:div class="courseware-slide-vml">
 		<html:p>An example of a slide with some text on it.</html:p>
 	      </html:div>
@@ -44,13 +44,13 @@
 	  <test:original>
 	    <cw:slide>
 	      <cw:title>Another Slide</cw:title>
-	      <cw:visual href="../visuals/something.svg"/>
+	      <cw:visual fileref="../visuals/something.svg"/>
 	    </cw:slide>
 	  </test:original>
 	  <test:expected>
 	    <div class="courseware-slide">
-	      <html:h1>Another Slide</html:h1>
-	      <img class="courseware-slide-visual" src="../visuals/something.svg"/>
+	      <html:h2>Another Slide</html:h2>
+	      <img class="courseware-slide-visual" src="{resolve-uri('../visuals/something.svg')}"/>
 	    </div>
 	  </test:expected>
 	</test:assert-transform>
@@ -61,7 +61,7 @@
 	  <test:original>
 	    <cw:slide>
 	      <cw:title>Another Slide</cw:title>
-	      <cw:visual href="../visuals/something.svg"/>
+	      <cw:visual fileref="../visuals/something.svg"/>
 	      <cw:notes>
 		<cw:student><cw:para>Should not be shown</cw:para></cw:student>
 		<cw:presenter><cw:para>Should not be shown either</cw:para></cw:presenter>
@@ -70,32 +70,36 @@
 	  </test:original>
 	  <test:expected>
 	    <html:div class="courseware-slide">
-	      <html:h1>Another Slide</html:h1>
-	      <html:img class="courseware-slide-visual" src="../visuals/something.svg"/>
+	      <html:h2>Another Slide</html:h2>
+	      <html:img class="courseware-slide-visual" src="{resolve-uri('../visuals/something.svg')}"/>
 	    </html:div>
 	  </test:expected>
 	</test:assert-transform>
 	
 	<h3>Licensing Information Is Not Displayed Next To the Slide</h3>
 	
+	<xsl:variable name="original">
+	  <cw:slide>
+	    <cw:title>Slide with License</cw:title>
+	    <cw:visual fileref="foo">
+	      <cw:copyright>
+		<cw:year>2007</cw:year>
+		<cw:holder>Copyright Owner</cw:holder>
+	      </cw:copyright>
+	      <cw:license href="license-url">License Description</cw:license>
+	    </cw:visual>
+	  </cw:slide>
+	</xsl:variable>
+	
 	<test:assert-transform>
 	  <test:original>
-	    <cw:slide>
-	      <cw:title>Slide with License</cw:title>
-	      <cw:visual href="foo">
-		<cw:copyright>
-		  <cw:year>2007</cw:year>
-		  <cw:holder>Copyright Owner</cw:holder>
-		</cw:copyright>
-		<cw:license href="license-url">License Description</cw:license>
-	      </cw:visual>
-	    </cw:slide>
+	    <xsl:copy-of select="$original"/>
 	  </test:original>
 	  
 	  <test:expected>
 	    <div class="courseware-slide">
-	      <html:h1>Slide with License</html:h1>
-	      <img class="courseware-slide-visual" src="foo"/>
+	      <html:h2>Slide with License</html:h2>
+	      <img class="courseware-slide-visual" src="{resolve-uri('foo', base-uri($original))}"/>
 	    </div>
 	  </test:expected>
 	  

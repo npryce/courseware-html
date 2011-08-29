@@ -47,6 +47,7 @@ check: build/testing/report.html $(XSLTEST_HOME)/test-abort-build.xslt
 	    saxon -xsl:$(XSLTEST_HOME)/test-abort-build.xslt -s:build/testing/results.xml; \
 	fi
 
+example: build/example/tutorial.html
 build/example/tutorial.html: example/tutorial.presentation $(SKELETON_FILES)
 	@mkdir -p $(dir $@)
 	saxon -xsl:xslt/presentation.xslt -s:$< -o:$@
@@ -69,4 +70,4 @@ clean:
 
 again: clean all
 
-.PHONY: all check clean again install dist
+.PHONY: all check clean again install dist example
