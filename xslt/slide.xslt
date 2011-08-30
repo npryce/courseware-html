@@ -8,7 +8,6 @@
 
   <xsl:import href="text.xslt"/>
   
-  
   <xsl:template match="cw:slide">
     <div class="courseware-slide">
       <xsl:apply-templates/>

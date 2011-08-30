@@ -8,12 +8,18 @@
     <xsl:choose>
       <xsl:when test="namespace-uri() = ''">
 	<xsl:element name="{local-name()}" namespace="{$ns}">
+	  <xsl:if test=". = /">
+	    <xsl:attribute name="xml:base" select="base-uri()"/>
+	  </xsl:if>
 	  <xsl:copy-of select="@*"/>
 	  <xsl:apply-templates select="node()"/>
 	</xsl:element>
       </xsl:when>
       <xsl:otherwise>
 	<xsl:copy>
+	  <xsl:if test=". = /">
+	    <xsl:attribute name="xml:base" select="base-uri()"/>
+	  </xsl:if>
 	  <xsl:copy-of select="@*"/>
 	  <xsl:apply-templates select="node()"/>
 	</xsl:copy>

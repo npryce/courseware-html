@@ -44,13 +44,14 @@
 	  <test:original>
 	    <cw:slide>
 	      <cw:title>Another Slide</cw:title>
-	      <cw:visual fileref="../visuals/something.svg"/>
+	      <cw:visual fileref="a-picture.jpg"/>
 	    </cw:slide>
 	  </test:original>
 	  <test:expected>
 	    <div class="courseware-slide">
 	      <html:h2>Another Slide</html:h2>
-	      <img class="courseware-slide-visual" src="{resolve-uri('../visuals/something.svg')}"/>
+	      <img class="courseware-slide-visual" 
+		   src="{resolve-uri('a-picture.jpg')}"/>
 	    </div>
 	  </test:expected>
 	</test:assert-transform>
@@ -61,7 +62,7 @@
 	  <test:original>
 	    <cw:slide>
 	      <cw:title>Another Slide</cw:title>
-	      <cw:visual fileref="../visuals/something.svg"/>
+	      <cw:visual fileref="something.svg"/>
 	      <cw:notes>
 		<cw:student><cw:para>Should not be shown</cw:para></cw:student>
 		<cw:presenter><cw:para>Should not be shown either</cw:para></cw:presenter>
@@ -71,7 +72,7 @@
 	  <test:expected>
 	    <html:div class="courseware-slide">
 	      <html:h2>Another Slide</html:h2>
-	      <html:img class="courseware-slide-visual" src="{resolve-uri('../visuals/something.svg')}"/>
+	      <html:img class="courseware-slide-visual" src="{resolve-uri('something.svg')}"/>
 	    </html:div>
 	  </test:expected>
 	</test:assert-transform>
@@ -99,7 +100,7 @@
 	  <test:expected>
 	    <div class="courseware-slide">
 	      <html:h2>Slide with License</html:h2>
-	      <img class="courseware-slide-visual" src="{resolve-uri('foo', base-uri($original))}"/>
+	      <img class="courseware-slide-visual" src="{resolve-uri('foo')}"/>
 	    </div>
 	  </test:expected>
 	  
