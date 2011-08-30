@@ -6,12 +6,12 @@
                 xmlns:fn="http://www.w3.org/2005/xpath-functions"
                 xmlns:cw="http://www.natpryce.com/courseware/1.0">
   
-  <xsl:import href="defaultns.xslt"/>
+  <xsl:import href="report-unknown-elements.xslt"/>
   <xsl:import href="slide.xslt"/>
   
   <xsl:param name="deck-theme" select="'web-2.0'"/>
   <xsl:param name="deck-transition" select="'horizontal-slide'"/>
-
+  
   <xsl:template match="/">
     <xsl:apply-templates/>
   </xsl:template>
