@@ -29,7 +29,7 @@ all: check dist
 dist: build/$(DIST).tar.gz
 
 build/$(DIST).tar.gz: $(SKELETON_FILES) $(XSLT:%=$(DIST_DIR)/%)
-	tar cvz -f $@ -C build $(DIST)
+	tar c$(taropts)z -f $@ -C build $(DIST)
 
 build/testing/%.xslt: tests/%.xslt $(XSLTEST_HOME)/xsltest.xslt
 	@mkdir -p $(dir $@)
