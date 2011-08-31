@@ -29,8 +29,8 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:div class="courseware-slide">
-	      <html:h2>A Slide</html:h2>
+	    <html:div class="courseware-slide" id="1">
+	      <html:h2 class="courseware-slide-title">A Slide</html:h2>
 	      <html:div class="courseware-slide-vml">
 		<html:p>An example of a slide with some text on it.</html:p>
 	      </html:div>
@@ -48,8 +48,8 @@
 	    </cw:slide>
 	  </test:original>
 	  <test:expected>
-	    <div class="courseware-slide">
-	      <html:h2>Another Slide</html:h2>
+	    <div class="courseware-slide" id="1">
+	      <html:h2 class="courseware-slide-title">Another Slide</html:h2>
 	      <img class="courseware-slide-visual" 
 		   src="{resolve-uri('a-picture.jpg')}"/>
 	    </div>
@@ -69,15 +69,16 @@
 	      </cw:notes>
 	    </cw:slide>
 	  </test:original>
+	  
 	  <test:expected>
-	    <html:div class="courseware-slide">
-	      <html:h2>Another Slide</html:h2>
+	    <html:div class="courseware-slide" id="1">
+	      <html:h2 class="courseware-slide-title">Another Slide</html:h2>
 	      <html:img class="courseware-slide-visual" src="{resolve-uri('something.svg')}"/>
 	    </html:div>
 	  </test:expected>
 	</test:assert-transform>
 	
-	<h3>Licensing Information Is Not Displayed Next To the Slide</h3>
+	<p>Licensing Information Is Not Displayed Next To the Slide</p>
 	
 	<xsl:variable name="original">
 	  <cw:slide>
@@ -98,13 +99,34 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <div class="courseware-slide">
-	      <html:h2>Slide with License</html:h2>
+	    <div class="courseware-slide" id="1">
+	      <html:h2 class="courseware-slide-title">Slide with License</html:h2>
 	      <img class="courseware-slide-visual" src="{resolve-uri('foo')}"/>
 	    </div>
 	  </test:expected>
-	  
 	</test:assert-transform>
+	
+	<p>Slides are given an id: 1, 2, 3...</p>
+	
+	<xsl:variable name="original">
+	  <cw:presentation>
+	    <cw:slide>
+	      <cw:title>First</cw:title>
+	    </cw:slide>
+	    <cw:slide>
+	      <cw:title>Second</cw:title>
+	    </cw:slide>
+	  </cw:presentation>
+	</xsl:variable>
+		
+	<xsl:variable name="transformed">
+	  <xsl:apply-templates select="$original"/>
+	</xsl:variable>
+	
+	<xsl:variable name="slide-divs" select="$transformed//html:div[@class='courseware-slide']"/>
+	
+	<test:assert-equal actual="number($slide-divs[1]/@id)" expected="1"/>
+	<test:assert-equal actual="number($slide-divs[2]/@id)" expected="2"/>
       </test:suite>
     </test:suite>
   </xsl:template>

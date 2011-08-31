@@ -9,13 +9,13 @@
   <xsl:import href="text.xslt"/>
   
   <xsl:template match="cw:slide">
-    <div class="courseware-slide">
+    <div class="courseware-slide" id="{index-of(//cw:slide,.)}">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
   
   <xsl:template match="cw:slide/cw:title">
-    <h2><xsl:apply-templates/></h2>
+    <h2 class="courseware-slide-title"><xsl:apply-templates/></h2>
   </xsl:template>
   
   <xsl:template match="cw:vml">
