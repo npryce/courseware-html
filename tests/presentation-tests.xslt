@@ -33,7 +33,7 @@
 	<xsl:apply-templates select="$presentation"/>
       </xsl:variable>
       
-      <test:assert-equal actual="count($transformed//*[@class='deck-container']/html:div[@class='courseware-slide'])"
+      <test:assert-equal actual="count($transformed//html:section[@class='courseware-slide'])"
 			 expected="2"/>
     </test:suite>
   </xsl:template>

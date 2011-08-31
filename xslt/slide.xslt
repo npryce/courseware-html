@@ -11,9 +11,10 @@
   <xsl:template match="cw:slide">
     <xsl:param name="slide-class" tunnel="yes">courseware-slide</xsl:param>
     
-    <div class="{$slide-class}" id="{index-of(//cw:slide,.)}">
+    <section class="{$slide-class}">
+      <xsl:attribute name="id"><xsl:number/></xsl:attribute>
       <xsl:apply-templates/>
-    </div>
+    </section>
   </xsl:template>
   
   <xsl:template match="cw:slide/cw:title">

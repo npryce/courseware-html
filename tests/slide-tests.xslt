@@ -29,12 +29,12 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:div class="courseware-slide" id="1">
-	      <html:h2 class="courseware-slide-title">A Slide</html:h2>
-	      <html:div class="courseware-slide-vml">
-		<html:p>An example of a slide with some text on it.</html:p>
-	      </html:div>
-	    </html:div>
+	    <section class="courseware-slide" id="1">
+	      <h2 class="courseware-slide-title">A Slide</h2>
+	      <div class="courseware-slide-vml">
+		<p>An example of a slide with some text on it.</p>
+	      </div>
+	    </section>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -48,11 +48,11 @@
 	    </cw:slide>
 	  </test:original>
 	  <test:expected>
-	    <div class="courseware-slide" id="1">
-	      <html:h2 class="courseware-slide-title">Another Slide</html:h2>
+	    <section class="courseware-slide" id="1">
+	      <h2 class="courseware-slide-title">Another Slide</h2>
 	      <img class="courseware-slide-visual" 
 		   src="{resolve-uri('a-picture.jpg')}"/>
-	    </div>
+	    </section>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -71,10 +71,10 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:div class="courseware-slide" id="1">
-	      <html:h2 class="courseware-slide-title">Another Slide</html:h2>
-	      <html:img class="courseware-slide-visual" src="{resolve-uri('something.svg')}"/>
-	    </html:div>
+	    <section class="courseware-slide" id="1">
+	      <h2 class="courseware-slide-title">Another Slide</h2>
+	      <img class="courseware-slide-visual" src="{resolve-uri('something.svg')}"/>
+	    </section>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -99,10 +99,10 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <div class="courseware-slide" id="1">
-	      <html:h2 class="courseware-slide-title">Slide with License</html:h2>
+	    <section class="courseware-slide" id="1">
+	      <h2 class="courseware-slide-title">Slide with License</h2>
 	      <img class="courseware-slide-visual" src="{resolve-uri('foo')}"/>
-	    </div>
+	    </section>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -123,10 +123,10 @@
 	  <xsl:apply-templates select="$original"/>
 	</xsl:variable>
 	
-	<xsl:variable name="slide-divs" select="$transformed//html:div[@class='courseware-slide']"/>
+	<xsl:variable name="html-slides" select="$transformed//html:section[@class='courseware-slide']"/>
 	
-	<test:assert-equal actual="number($slide-divs[1]/@id)" expected="1"/>
-	<test:assert-equal actual="number($slide-divs[2]/@id)" expected="2"/>
+	<test:assert-equal actual="number($html-slides[1]/@id)" expected="1"/>
+	<test:assert-equal actual="number($html-slides[2]/@id)" expected="2"/>
 	
 	<p>Slide class can be set with an XSLT parameter</p>
 	
@@ -140,9 +140,9 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:div class="different-class" id="1">
-	      <html:h2 class="courseware-slide-title">A Slide</html:h2>
-	    </html:div>
+	    <section class="different-class" id="1">
+	      <h2 class="courseware-slide-title">A Slide</h2>
+	    </section>
 	  </test:expected>
 	</test:assert-transform>
 	

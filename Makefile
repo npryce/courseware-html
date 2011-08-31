@@ -13,15 +13,14 @@ XSLTEST_HOME=../xsltest/src
 endif
 
 JQUERY=lib/jquery-1.6.2
-DECK=lib/imakewebthings-deck.js-46d52ce
 
-JQUERY_FILES=$(wildcard $(JQUERY)/*.js)
-DECK_FILES=$(DECK)/modernizr.custom.js $(DECK)/core $(DECK)/themes $(DECK)/extensions
+HTML_FILES:=$(wildcard skeleton/*)
+JQUERY_FILES:=$(wildcard $(JQUERY)/*.js)
 
 DIST_DIR=build/$(DIST)
 
-SKELETON_FILES=$(JQUERY_FILES:$(JQUERY)/%=$(DIST_DIR)/skeleton/%) \
-               $(DECK_FILES:$(DECK)/%=$(DIST_DIR)/skeleton/deck/%)
+SKELETON_FILES:=$(JQUERY_FILES:$(JQUERY)/%=$(DIST_DIR)/skeleton/%) \
+		$(HTML_FILES:skeleton/%=$(DIST_DIR)/skeleton/%)
 
 
 all: check dist
@@ -57,7 +56,7 @@ $(DIST_DIR)/skeleton/%: $(JQUERY)/%
 	mkdir -p $(dir $@)
 	cp -r $< $@
 
-$(DIST_DIR)/skeleton/deck/%: $(DECK)/%
+$(DIST_DIR)/skeleton/%: skeleton/%
 	mkdir -p $(dir $@)
 	cp -r  $< $@
 
