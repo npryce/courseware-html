@@ -127,6 +127,25 @@
 	
 	<test:assert-equal actual="number($slide-divs[1]/@id)" expected="1"/>
 	<test:assert-equal actual="number($slide-divs[2]/@id)" expected="2"/>
+	
+	<p>Slide class can be set with an XSLT parameter</p>
+	
+	<test:assert-transform>
+	  <xsl:with-param name="slide-class" tunnel="yes">different-class</xsl:with-param>
+	  
+	  <test:original>
+	    <cw:slide>
+	      <cw:title>A Slide</cw:title>
+	    </cw:slide>
+	  </test:original>
+	  
+	  <test:expected>
+	    <html:div class="different-class" id="1">
+	      <html:h2 class="courseware-slide-title">A Slide</html:h2>
+	    </html:div>
+	  </test:expected>
+	</test:assert-transform>
+	
       </test:suite>
     </test:suite>
   </xsl:template>

@@ -9,7 +9,9 @@
   <xsl:import href="text.xslt"/>
   
   <xsl:template match="cw:slide">
-    <div class="courseware-slide" id="{index-of(//cw:slide,.)}">
+    <xsl:param name="slide-class" tunnel="yes">courseware-slide</xsl:param>
+    
+    <div class="{$slide-class}" id="{index-of(//cw:slide,.)}">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
