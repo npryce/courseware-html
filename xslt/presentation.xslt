@@ -9,9 +9,6 @@
   <xsl:import href="report-unknown-elements.xslt"/>
   <xsl:import href="slide.xslt"/>
   
-  <xsl:param name="deck-theme" select="'web-2.0'"/>
-  <xsl:param name="deck-transition" select="'horizontal-slide'"/>
-  
   <xsl:template match="/">
     <xsl:apply-templates/>
   </xsl:template>

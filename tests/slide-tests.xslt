@@ -29,9 +29,9 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <section class="courseware-slide" id="1">
+	    <section class="courseware-slide courseware-text-slide" id="1">
 	      <h2 class="courseware-slide-title">A Slide</h2>
-	      <div class="courseware-slide-vml">
+	      <div class="courseware-slide-contents">
 		<p>An example of a slide with some text on it.</p>
 	      </div>
 	    </section>
@@ -48,9 +48,9 @@
 	    </cw:slide>
 	  </test:original>
 	  <test:expected>
-	    <section class="courseware-slide" id="1">
+	    <section class="courseware-slide courseware-image-slide" id="1">
 	      <h2 class="courseware-slide-title">Another Slide</h2>
-	      <img class="courseware-slide-visual" 
+	      <img class="courseware-slide-contents" 
 		   src="{resolve-uri('a-picture.jpg')}"/>
 	    </section>
 	  </test:expected>
@@ -64,16 +64,16 @@
 	      <cw:title>Another Slide</cw:title>
 	      <cw:visual fileref="something.svg"/>
 	      <cw:notes>
-		<cw:student><cw:para>Should not be shown</cw:para></cw:student>
-		<cw:presenter><cw:para>Should not be shown either</cw:para></cw:presenter>
+                <cw:student><cw:para>Should not be shown</cw:para></cw:student>
+                <cw:presenter><cw:para>Should not be shown either</cw:para></cw:presenter>
 	      </cw:notes>
 	    </cw:slide>
 	  </test:original>
 	  
 	  <test:expected>
-	    <section class="courseware-slide" id="1">
+	    <section class="courseware-slide courseware-image-slide" id="1">
 	      <h2 class="courseware-slide-title">Another Slide</h2>
-	      <img class="courseware-slide-visual" src="{resolve-uri('something.svg')}"/>
+	      <img class="courseware-slide-contents" src="{resolve-uri('something.svg')}"/>
 	    </section>
 	  </test:expected>
 	</test:assert-transform>
@@ -81,27 +81,26 @@
 	<p>Licensing Information Is Not Displayed Next To the Slide</p>
 	
 	<xsl:variable name="original">
-	  <cw:slide>
-	    <cw:title>Slide with License</cw:title>
-	    <cw:visual fileref="foo">
-	      <cw:copyright>
-		<cw:year>2007</cw:year>
-		<cw:holder>Copyright Owner</cw:holder>
-	      </cw:copyright>
-	      <cw:license href="license-url">License Description</cw:license>
-	    </cw:visual>
-	  </cw:slide>
 	</xsl:variable>
 	
 	<test:assert-transform>
 	  <test:original>
-	    <xsl:copy-of select="$original"/>
+	    <cw:slide>
+	      <cw:title>Slide with License</cw:title>
+	      <cw:visual fileref="foo">
+		<cw:copyright>
+		  <cw:year>2007</cw:year>
+		  <cw:holder>Copyright Owner</cw:holder>
+		</cw:copyright>
+		<cw:license href="license-url">License Description</cw:license>
+	    </cw:visual>
+	    </cw:slide>
 	  </test:original>
 	  
 	  <test:expected>
-	    <section class="courseware-slide" id="1">
+	    <section class="courseware-slide courseware-image-slide" id="1">
 	      <h2 class="courseware-slide-title">Slide with License</h2>
-	      <img class="courseware-slide-visual" src="{resolve-uri('foo')}"/>
+	      <img class="courseware-slide-contents" src="{resolve-uri('foo')}"/>
 	    </section>
 	  </test:expected>
 	</test:assert-transform>
@@ -127,24 +126,6 @@
 	
 	<test:assert-equal actual="number($html-slides[1]/@id)" expected="1"/>
 	<test:assert-equal actual="number($html-slides[2]/@id)" expected="2"/>
-	
-	<p>Slide class can be set with an XSLT parameter</p>
-	
-	<test:assert-transform>
-	  <xsl:with-param name="slide-class" tunnel="yes">different-class</xsl:with-param>
-	  
-	  <test:original>
-	    <cw:slide>
-	      <cw:title>A Slide</cw:title>
-	    </cw:slide>
-	  </test:original>
-	  
-	  <test:expected>
-	    <section class="different-class" id="1">
-	      <h2 class="courseware-slide-title">A Slide</h2>
-	    </section>
-	  </test:expected>
-	</test:assert-transform>
 	
       </test:suite>
     </test:suite>

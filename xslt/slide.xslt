@@ -8,11 +8,26 @@
 
   <xsl:import href="text.xslt"/>
   
-  <xsl:template match="cw:slide">
-    <xsl:param name="slide-class" tunnel="yes">courseware-slide</xsl:param>
+  <xsl:function name="cw:slide-class">
+    <xsl:param name="slide"/>
     
-    <section class="{$slide-class}">
+    <xsl:variable name="slide-type">
+      <xsl:choose>
+	<xsl:when test="$slide/cw:visual">courseware-image-slide</xsl:when>
+	<xsl:when test="$slide/cw:vml">courseware-text-slide</xsl:when>
+	<xsl:otherwise/>
+      </xsl:choose>
+    </xsl:variable>
+    
+    <xsl:value-of select="normalize-space(concat('courseware-slide', ' ', $slide-type))"/>
+  </xsl:function>
+
+  <xsl:template match="cw:slide">
+    <xsl:param name="extra-slide-class" tunnel="yes">courseware-slide</xsl:param>
+    
+    <section>
       <xsl:attribute name="id"><xsl:number/></xsl:attribute>
+      <xsl:attribute name="class" select="cw:slide-class(.)"/>
       <xsl:apply-templates/>
     </section>
   </xsl:template>
@@ -22,13 +37,13 @@
   </xsl:template>
   
   <xsl:template match="cw:vml">
-    <div class="courseware-slide-vml">
+    <div class="courseware-slide-contents">
       <xsl:apply-templates/>
     </div>
   </xsl:template>
   
   <xsl:template match="cw:visual">
-    <img class="courseware-slide-visual" src="{resolve-uri(@fileref,base-uri())}"/>
+    <img class="courseware-slide-contents" src="{resolve-uri(@fileref,base-uri())}"/>
   </xsl:template>
   
   <xsl:template match="cw:notes"/>
