@@ -12,15 +12,11 @@ ifndef XSLTEST_HOME
 XSLTEST_HOME=../xsltest/src
 endif
 
-JQUERY=lib/jquery-1.6.2
-
 HTML_FILES:=$(wildcard skeleton/*)
-JQUERY_FILES:=$(wildcard $(JQUERY)/*.js)
 
 DIST_DIR=build/$(DIST)
 
-SKELETON_FILES:=$(JQUERY_FILES:$(JQUERY)/%=$(DIST_DIR)/skeleton/%) \
-		$(HTML_FILES:skeleton/%=$(DIST_DIR)/skeleton/%)
+SKELETON_FILES:=$(HTML_FILES:skeleton/%=$(DIST_DIR)/skeleton/%)
 
 
 all: check dist
@@ -51,10 +47,6 @@ build/example/tutorial.html: example/tutorial.presentation $(SKELETON_FILES)
 	@mkdir -p $(dir $@)
 	saxon -xsl:xslt/presentation.xslt -s:$< -o:$@
 	cp -R build/$(DIST)/skeleton/* $(dir $@)
-
-$(DIST_DIR)/skeleton/%: $(JQUERY)/%
-	mkdir -p $(dir $@)
-	cp -r $< $@
 
 $(DIST_DIR)/skeleton/%: skeleton/%
 	mkdir -p $(dir $@)
