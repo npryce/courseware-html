@@ -50,7 +50,7 @@ example: build/example/tutorial.html
 build/example/tutorial.html: example/tutorial.presentation $(SKELETON_FILES)
 	@mkdir -p $(dir $@)
 	saxon -xsl:xslt/presentation.xslt -s:$< -o:$@
-	cp -R build/$(DIST)/skeleton/* $(dir $@)/
+	cp -R build/$(DIST)/skeleton/* $(dir $@)
 
 $(DIST_DIR)/skeleton/%: $(JQUERY)/%
 	mkdir -p $(dir $@)
