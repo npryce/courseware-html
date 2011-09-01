@@ -21,24 +21,24 @@ body {
     height: 100%; 
 }
 
-.courseware-image-slide .courseware-slide-title {
-    display: none;
-}
-
-.courseware-image-side .courseware-slide-contents {
-    display: block;
-    position: absolute;
-    
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
 .courseware-text-slide {
     font-family: PatrickHand, sans-serif;
     padding: 64px;
 }
 
-.courseware-text-slide .courseware-slide-contents {
+.courseware-image-slide .courseware-slide-title {
+    display: none;
 }
+
+.courseware-image-slide .courseware-slide-contents {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+

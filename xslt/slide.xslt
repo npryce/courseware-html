@@ -43,7 +43,7 @@
   </xsl:template>
   
   <xsl:template match="cw:visual">
-    <img class="courseware-slide-contents" src="{resolve-uri(@fileref,base-uri())}"/>
+    <div class="courseware-slide-contents" style="background-image: url('{resolve-uri(@fileref,base-uri())}')"/>
   </xsl:template>
   
   <xsl:template match="cw:notes"/>

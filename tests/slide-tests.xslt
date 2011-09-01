@@ -38,7 +38,11 @@
 	  </test:expected>
 	</test:assert-transform>
 	
-	<p>Slides can contain just images</p>
+	<p>Slides can contain just images.  Images are translated into
+	<code>div</code> elements with a background-image style, not
+        into <code>img</code> elements, so that they can easily be made
+        to fill the slide with CSS.
+	</p>
 	
 	<test:assert-transform>
 	  <test:original>
@@ -50,8 +54,8 @@
 	  <test:expected>
 	    <section class="courseware-slide courseware-image-slide" id="1">
 	      <h2 class="courseware-slide-title">Another Slide</h2>
-	      <img class="courseware-slide-contents" 
-		   src="{resolve-uri('a-picture.jpg')}"/>
+	      <div class="courseware-slide-contents" 
+		   style="background-image: url('{resolve-uri('a-picture.jpg')}')"/>
 	    </section>
 	  </test:expected>
 	</test:assert-transform>
@@ -73,7 +77,7 @@
 	  <test:expected>
 	    <section class="courseware-slide courseware-image-slide" id="1">
 	      <h2 class="courseware-slide-title">Another Slide</h2>
-	      <img class="courseware-slide-contents" src="{resolve-uri('something.svg')}"/>
+	      <div class="courseware-slide-contents" style="background-image: url('{resolve-uri('something.svg')}')"/>
 	    </section>
 	  </test:expected>
 	</test:assert-transform>
@@ -100,7 +104,7 @@
 	  <test:expected>
 	    <section class="courseware-slide courseware-image-slide" id="1">
 	      <h2 class="courseware-slide-title">Slide with License</h2>
-	      <img class="courseware-slide-contents" src="{resolve-uri('foo')}"/>
+	      <div class="courseware-slide-contents" style="background-image: url('{resolve-uri('foo')}')"/>
 	    </section>
 	  </test:expected>
 	</test:assert-transform>
