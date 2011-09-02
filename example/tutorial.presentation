@@ -47,6 +47,22 @@
   </slide>
 
   <slide>
+    <title>Images?</title>
+
+    <vml>
+      <para>The next slide contains just an image</para>
+    </vml>
+
+    <notes>
+      <student>
+      </student>
+
+      <presenter>
+      </presenter>
+    </notes>
+  </slide>
+
+  <slide>
     <title>A Slide with an Image</title>
 
     <visual fileref="walk.jpg"></visual>
@@ -56,6 +72,27 @@
 
       <presenter>
         <para>This slide has no student notes</para>
+      </presenter>
+    </notes>
+  </slide>
+
+  <slide>
+    <title>Code</title>
+
+    <vml>
+      <para>Code is Pretty-Printed</para>
+      
+      <programlisting lang="java">
+	public class FactoryImplSpringBollocksImplAdapterBean {
+        }
+      </programlisting>
+    </vml>
+    
+    <notes>
+      <student>
+      </student>
+
+      <presenter>
       </presenter>
     </notes>
   </slide>

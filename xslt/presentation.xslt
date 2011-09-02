@@ -17,8 +17,10 @@
     <html>
       <head>
 	<link rel="stylesheet" type="text/css" href="slideshow.css"/>
-	<link rel="stylesheet" type="text/css" href="prettify.css"/>
+	<link rel="stylesheet" type="text/css" href="google-code-prettify/prettify.css"/>
 	<script type="text/javascript" src="jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="google-code-prettify/prettify.js"></script>
 	<script type="text/javascript" src="slideshow.js"></script>
       </head>
       <body>
