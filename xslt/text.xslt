@@ -55,11 +55,13 @@
   </xsl:template>
   
   <xsl:template match="cw:programlisting">
-    <html:pre>
-      <xsl:if test="@lang">
-	<xsl:attribute name="class" select="concat('courseware-programlisting-', @lang)"/>
-      </xsl:if>
-      <xsl:apply-templates/>
+    <html:pre class="courseware-program-listing prettyprint">
+      <html:code>
+	<xsl:if test="@lang">
+	  <xsl:attribute name="class" select="concat('language-', @lang)"/>
+	</xsl:if>
+	<xsl:apply-templates/>
+      </html:code>
     </html:pre>
   </xsl:template>
 

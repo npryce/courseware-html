@@ -9,9 +9,11 @@ $(function() {
     function changeSlideTo(selectNext) {
       var nextSlide = selectNext(currentSlide);
       
-      transition(currentSlide, nextSlide);
-      currentSlide = nextSlide;
-      document.location.hash = currentSlide.attr('id');
+      if (nextSlide.length != 0) {
+	transition(currentSlide, nextSlide);
+	currentSlide = nextSlide;
+	document.location.hash = currentSlide.attr('id');
+      }
     }
     
     function gotoSlideAction(whereTo) {

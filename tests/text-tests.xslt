@@ -22,7 +22,7 @@
 	    <cw:para>Some text</cw:para>
 	  </test:original>
 	  <test:expected>
-	    <html:p>Some text</html:p>
+	    <p>Some text</p>
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
@@ -38,7 +38,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:ol><html:li>Some text</html:li></html:ol>
+	    <ol><li>Some text</li></ol>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -50,7 +50,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:ul><html:li>Some text</html:li></html:ul>
+	    <ul><li>Some text</li></ul>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -62,7 +62,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:ol></html:ol>
+	    <ol></ol>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -72,7 +72,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:ul></html:ul>
+	    <ul></ul>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -91,15 +91,15 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:ul>
-	      <html:li>
-		<html:ol>
-		  <html:li>A</html:li>
-		  <html:li>B</html:li>
-		</html:ol>
-	      </html:li>
-	      <html:li>X</html:li>
-	    </html:ul>
+	    <ul>
+	      <li>
+		<ol>
+		  <li>A</li>
+		  <li>B</li>
+		</ol>
+	      </li>
+	      <li>X</li>
+	    </ul>
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
@@ -123,51 +123,47 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:table class="courseware-termlist">
-	      <html:tr class="courseware-termlist-item">
-		<html:td class="courseware-termlist-term">A</html:td>
-		<html:td class="courseware-termlist-definition"><html:p>1</html:p></html:td>
-	      </html:tr>
-	      <html:tr class="courseware-termlist-item">
-		<html:td class="courseware-termlist-term">B</html:td>
-		<html:td class="courseware-termlist-definition"><html:p>2</html:p></html:td>
-	      </html:tr>
-	    </html:table>
+	    <table class="courseware-termlist">
+	      <tr class="courseware-termlist-item">
+		<td class="courseware-termlist-term">A</td>
+		<td class="courseware-termlist-definition"><p>1</p></td>
+	      </tr>
+	      <tr class="courseware-termlist-item">
+		<td class="courseware-termlist-term">B</td>
+		<td class="courseware-termlist-definition"><p>2</p></td>
+	      </tr>
+	    </table>
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
       
       <test:suite>
 	<h3>Program Listings</h3>
-	<p>Programlistings are translated into HTML pre elements.</p>
+	<p>Programlistings are translated into prettified, nested HTML <code>pre</code> and <code>code</code> elements.</p>
 	
 	<test:assert-transform>
 	  <test:original>
-	    <cw:programlisting>
-	      int main(int argc, char **argv);
-	    </cw:programlisting>
+	    <cw:programlisting>int main(int argc, char **argv);</cw:programlisting>
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:pre>
-	      int main(int argc, char **argv);
-	    </html:pre>
+	    <pre class="courseware-program-listing prettyprint">
+	      <code>int main(int argc, char **argv);</code>
+	    </pre>
 	  </test:expected>
 	</test:assert-transform>
 	
-	<p>The language is translated into a class on the pre element.</p>
+	<p>The language is translated into a class on the <code>code</code> element.</p>
 	
 	<test:assert-transform>
 	  <test:original>
-	    <cw:programlisting lang="java">
-	      throw null;
-	    </cw:programlisting>
+	    <cw:programlisting lang="java">throw null;</cw:programlisting>
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:pre class="courseware-programlisting-java">
-	      throw null;
-	    </html:pre>
+	    <pre class="courseware-program-listing prettyprint">
+	      <code class="language-java">throw null;</code>
+	    </pre>
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
@@ -187,7 +183,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:em>Hello</html:em>
+	    <em>Hello</em>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -199,7 +195,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:strong>Hello</html:strong>
+	    <strong>Hello</strong>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -211,7 +207,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:em class="courseware-emphasis-danger">Hello</html:em>
+	    <em class="courseware-emphasis-danger">Hello</em>
 	  </test:expected>
 	</test:assert-transform>
 	
@@ -226,7 +222,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:a href="http://www.example.com">Link Text</html:a>
+	    <a href="http://www.example.com">Link Text</a>
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
@@ -240,7 +236,7 @@
 	  </test:original>
 	  
 	  <test:expected>
-	    <html:code>% rm -rf *</html:code>
+	    <code>% rm -rf *</code>
 	  </test:expected>
 	</test:assert-transform>
       </test:suite>
