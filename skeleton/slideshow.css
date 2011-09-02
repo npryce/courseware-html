@@ -42,3 +42,12 @@ body {
     background-position: center;
 }
 
+pre {
+    white-space: pre;
+}
+
+code {
+    font-family: Courier-New, monospace;
+    font-size: 20px;
+    font-weight: normal;
+}

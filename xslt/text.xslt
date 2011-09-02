@@ -31,64 +31,64 @@
   </xsl:template>
   
   <xsl:template match="cw:termlist">
-    <html:table class="courseware-termlist">
+    <table class="courseware-termlist">
       <xsl:apply-templates/>
-    </html:table>
+    </table>
   </xsl:template>
 
   <xsl:template match="cw:termlistitem">
-    <html:tr class="courseware-termlist-item">
+    <tr class="courseware-termlist-item">
       <xsl:apply-templates/>
-    </html:tr>
+    </tr>
   </xsl:template>
 
   <xsl:template match="cw:term">
-    <html:td class="courseware-termlist-term">
+    <td class="courseware-termlist-term">
       <xsl:apply-templates/>
-    </html:td>
+    </td>
   </xsl:template>
   
   <xsl:template match="cw:definition">
-    <html:td class="courseware-termlist-definition">
+    <td class="courseware-termlist-definition">
       <xsl:apply-templates/>
-    </html:td>
+    </td>
   </xsl:template>
   
   <xsl:template match="cw:programlisting">
-    <html:pre class="courseware-program-listing prettyprint">
-      <html:code>
+    <pre class="courseware-program-listing prettyprint">
+      <code>
 	<xsl:if test="@lang">
 	  <xsl:attribute name="class" select="concat('language-', @lang)"/>
 	</xsl:if>
 	<xsl:apply-templates/>
-      </html:code>
-    </html:pre>
+      </code>
+    </pre>
   </xsl:template>
 
   <xsl:template match="cw:emphasis[@role='strong']">
-    <html:strong>
+    <strong>
       <xsl:apply-templates/>
-    </html:strong>
+    </strong>
   </xsl:template>
   
   <xsl:template match="cw:emphasis">
-    <html:em>
+    <em>
       <xsl:if test="@role">
 	<xsl:attribute name="class" select="concat('courseware-emphasis-', @role)"/>
       </xsl:if>
       <xsl:apply-templates/>
-    </html:em>
+    </em>
   </xsl:template>
   
   <xsl:template match="cw:link">
-    <html:a href="{@href}">
+    <a href="{@href}">
       <xsl:apply-templates/>
-    </html:a>
+    </a>
   </xsl:template>
 
   <xsl:template match="cw:code">
-    <html:code>
+    <code>
       <xsl:apply-templates/>
-    </html:code>
+    </code>
   </xsl:template>
 </xsl:stylesheet>
