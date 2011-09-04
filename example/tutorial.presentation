@@ -82,10 +82,9 @@
     <vml>
       <para>Code is Pretty-Printed</para>
       
-      <programlisting lang="java">
-	public class FactoryImplSpringBollocksImplAdapterBean {
-        }
-      </programlisting>
+      <programlisting lang="java">public class FactoryImplSpringBollocksImplAdapterBean {
+    ...
+}</programlisting>
     </vml>
     
     <notes>

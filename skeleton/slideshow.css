@@ -6,24 +6,42 @@
 }
 
 body { 
+    -webkit-user-select: none;
     color: #000000; 
     background-color: #ffffff; 
-    font-family: arial; 
-    font-size: 40px; -webkit-user-select: none; 
+    font-family: PatrickHand, sans-serif;
+    font-size: 40px; 
 }
 
 .courseware-slide { 
-    display: none; 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
-.courseware-text-slide {
-    font-family: PatrickHand, sans-serif;
-    padding: 64px;
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+.courseware-title-slide h1 {
+    position: absolute;
+    top: 35%;
+    left: 0;
+    width: 100%;
+    font-size: 64px;
+    text-align: center;
+}
+
+.courseware-text-slide .courseware-slide-contents {
+    margin: 64px;
+}
+
+.courseware-text-slide .courseware-slide-title {
+    margin: 64px;
+    margin-bottom: 0;
 }
 
 .courseware-image-slide .courseware-slide-title {
@@ -43,11 +61,13 @@ body {
 }
 
 pre {
-    white-space: pre;
-}
-
-code {
     font-family: Courier-New, monospace;
-    font-size: 20px;
+    font-size: 32px;
     font-weight: normal;
 }
+
+pre.prettyprint {
+    padding: 0.5em;
+}
+
+

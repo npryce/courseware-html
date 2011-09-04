@@ -16,15 +16,21 @@
   <xsl:template match="cw:presentation">
     <html>
       <head>
-	<link rel="stylesheet" type="text/css" href="slideshow.css"/>
 	<link rel="stylesheet" type="text/css" href="google-code-prettify/prettify.css"/>
+	<link rel="stylesheet" type="text/css" href="slideshow.css"/>
 	<script type="text/javascript" src="jquery-1.6.2.min.js"></script>
 	<script type="text/javascript" src="jquery.hotkeys.js"></script>
 	<script type="text/javascript" src="google-code-prettify/prettify.js"></script>
 	<script type="text/javascript" src="slideshow.js"></script>
       </head>
       <body>
-	<xsl:apply-templates select="cw:slide"/>
+        <section id="1" class="courseware-slide courseware-title-slide">
+	  <h1><xsl:apply-templates select="cw:title/node()"/></h1>
+	</section>
+	
+	<xsl:apply-templates select="cw:slide">
+	  <xsl:with-param name="intro-slide-count" select="1" tunnel="yes"/>
+	</xsl:apply-templates>
       </body>
     </html>
   </xsl:template>

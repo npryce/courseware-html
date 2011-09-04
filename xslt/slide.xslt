@@ -23,11 +23,9 @@
   </xsl:function>
 
   <xsl:template match="cw:slide">
-    <xsl:param name="extra-slide-class" tunnel="yes">courseware-slide</xsl:param>
+    <xsl:param tunnel="yes" name="intro-slide-count" select="0"/>
     
-    <section>
-      <xsl:attribute name="id"><xsl:number/></xsl:attribute>
-      <xsl:attribute name="class" select="cw:slide-class(.)"/>
+    <section id="{index-of(..//cw:slide, .) + $intro-slide-count}" class="{cw:slide-class(.)}">
       <xsl:apply-templates/>
     </section>
   </xsl:template>

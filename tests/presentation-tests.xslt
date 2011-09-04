@@ -9,6 +9,7 @@
 
   <xsl:import href="../xslt/presentation.xslt"/>
   
+
   <xsl:template name="presentation-tests">
     <test:suite>
       <h2>Presentation Transformations</h2>
@@ -33,8 +34,27 @@
 	<xsl:apply-templates select="$presentation"/>
       </xsl:variable>
       
-      <test:assert-equal actual="count($transformed//html:section[contains(@class, 'courseware-slide')])"
-			 expected="2"/>
+      <xsl:variable name="html-slides" 
+		    select="$transformed//html:section[contains(@class, 'courseware-slide ')]"/>
+      
+      <test:assert-equal actual="count($html-slides)" expected="3"/>
+      
+      <p>Creates a Title Slide</p>
+      
+      <xsl:variable name="title-slide" select="$html-slides[1]"/>
+      <test:assert-equal actual="string($title-slide/@class)"
+			 expected="'courseware-slide courseware-title-slide'"/>
+      <test:assert-equal actual="string($title-slide/html:h1)"
+			 expected="'Example Presentation'"/>
+
+
+      <p>Slides are given an id: 1, 2, 3...</p>
+      
+      <xsl:variable name="html-slides" select="$transformed//html:section[contains(@class, 'courseware-slide ')]"/>
+      
+      <test:assert-equal actual="number($html-slides[1]/@id)" expected="1"/>
+      <test:assert-equal actual="number($html-slides[2]/@id)" expected="2"/>
+      <test:assert-equal actual="number($html-slides[3]/@id)" expected="3"/>
     </test:suite>
   </xsl:template>
 </xsl:stylesheet>

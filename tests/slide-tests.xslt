@@ -109,28 +109,6 @@
 	  </test:expected>
 	</test:assert-transform>
 	
-	<p>Slides are given an id: 1, 2, 3...</p>
-	
-	<xsl:variable name="original">
-	  <cw:presentation>
-	    <cw:slide>
-	      <cw:title>First</cw:title>
-	    </cw:slide>
-	    <cw:slide>
-	      <cw:title>Second</cw:title>
-	    </cw:slide>
-	  </cw:presentation>
-	</xsl:variable>
-		
-	<xsl:variable name="transformed">
-	  <xsl:apply-templates select="$original"/>
-	</xsl:variable>
-	
-	<xsl:variable name="html-slides" select="$transformed//html:section[@class='courseware-slide']"/>
-	
-	<test:assert-equal actual="number($html-slides[1]/@id)" expected="1"/>
-	<test:assert-equal actual="number($html-slides[2]/@id)" expected="2"/>
-	
       </test:suite>
     </test:suite>
   </xsl:template>
