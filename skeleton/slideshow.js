@@ -1,5 +1,18 @@
 $(function() {
-    var currentSlide = $('section').first();
+    var slide_selector = 'section.courseware-slide';
+    
+    function initialSlide() {
+      var slides = $(slide_selector);
+      
+      var index = Math.max(1, Math.min(parseInt(document.location.hash.slice(1), 10), slides.length));
+      if (isNaN(index)) {
+        index = 1;
+      }
+      
+      return slides.eq(index-1);
+    }
+    
+    var currentSlide = initialSlide();
     
     function transition(fromSlide, toSlide) {
       fromSlide.fadeOut();
@@ -25,16 +38,16 @@ $(function() {
     
     var traversals = {
         next: function(slide) {
-            return slide.next('section');
+            return slide.next(slide_selector);
         },
         prev: function(slide) {
-	    return slide.prev('section');
+	    return slide.prev(slide_selector);
         },
         first: function(slide) {
-            return slide.siblings('section').first();
+            return $(slide_selector).first();
         }, 
         last: function(slide) {
-	    return slide.siblings('section').last();
+	    return $(slide_selector).last();
         }
     };
     
