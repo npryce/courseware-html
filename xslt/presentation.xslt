@@ -8,6 +8,7 @@
   
   <xsl:import href="report-unknown-elements.xslt"/>
   <xsl:import href="slide.xslt"/>
+  <xsl:import href="license.xslt"/>
   
   <xsl:template match="/">
     <xsl:apply-templates/>
@@ -31,7 +32,42 @@
 	<xsl:apply-templates select="cw:slide">
 	  <xsl:with-param name="intro-slide-count" select="1" tunnel="yes"/>
 	</xsl:apply-templates>
+        
+        <xsl:if test="cw:slide/cw:visual/cw:license">
+          <section id="{count(cw:slide)+2}" class="courseware-slide courseware-text-slide courseware-credits-slide">
+            <h2 class="courseware-slide-title">Image Credits</h2>
+            <div class="courseware-slide-content">
+              <ul>
+                <xsl:apply-templates select="cw:slide[cw:visual/cw:license]" mode="image-credits"/>
+              </ul>
+            </div>
+          </section>
+        </xsl:if>
       </body>
     </html>
+  </xsl:template>
+  
+  <xsl:template match="cw:slide[cw:visual/cw:license]" mode="image-credits">
+    <xsl:variable name="slide-index"><xsl:number/></xsl:variable>
+    
+    <li><p><a href="#{$slide-index}">Slide <xsl:value-of select="$slide-index"
+      />, <em><xsl:value-of select="cw:title"/></em></a>: <xsl:apply-templates select="cw:visual/cw:copyright"
+      />. <xsl:apply-templates select="cw:visual/cw:license"/>.</p></li>
+  </xsl:template>
+  
+  <xsl:template match="cw:visual/cw:copyright">Copyright &#xA9; <xsl:value-of select="cw:year"
+    /><xsl:text> </xsl:text><xsl:value-of select="cw:holder"
+    /></xsl:template>
+  
+  <xsl:template match="cw:visual/cw:license">
+    <xsl:variable name="license-name" select="cw:license-name(@href)"/>
+    
+    <xsl:text>Used under the terms of </xsl:text>
+    <a href="{@href}">
+      <xsl:choose>
+        <xsl:when test="exists($license-name)"><xsl:copy-of select="$license-name"/></xsl:when>
+        <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
+      </xsl:choose>
+    </a>
   </xsl:template>
 </xsl:stylesheet>

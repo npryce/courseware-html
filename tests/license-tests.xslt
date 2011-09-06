@@ -7,20 +7,20 @@
                 xmlns:cw="http://www.natpryce.com/courseware/1.0"
                 xmlns:test="http://www.natpryce.com/xsltest/1.0">
 
-  <test:import href="presentation-tests.xslt"/>
-  <test:import href="slide-tests.xslt"/>
-  <test:import href="text-tests.xslt"/>
-  <test:import href="license-tests.xslt"/>
+  <xsl:import href="../xslt/license.xslt"/>
   
-  <xsl:output method="xml" indent="yes"/>
-  
-  <xsl:template name="all-tests">
+  <xsl:template name="license-tests">
     <test:suite>
-      <h1>Courseware to HTML Transformation</h1>
-      <xsl:call-template name="license-tests"/>
-      <xsl:call-template name="presentation-tests"/>
-      <xsl:call-template name="slide-tests"/>
-      <xsl:call-template name="text-tests"/>
+      <h2>Known Licenses</h2>
+      <ul>
+	<li><p>Can name CC Attribution license</p>
+	  <test:assert that="cw:license-name('http://creativecommons.org/licenses/by/2.0/anything-else')
+			     = 'the Creative Commons Attribution 2.0 Generic license'"/>
+	</li>
+	<li><p>Returns nothing for unknown license</p>
+	  <test:assert that="not(exists(cw:license-name('http://example.com/unknown-license')))"/>
+	</li>
+      </ul>
     </test:suite>
   </xsl:template>
 </xsl:stylesheet>
