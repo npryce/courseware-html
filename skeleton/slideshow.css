@@ -56,8 +56,27 @@ h1, h2, h3 {
     width: 100%;
     height: 100%;
     background-size: contain;
+    -moz-background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.courseware-credits-slide ul {
+    list-style: none;
+}
+
+.courseware-credits-slide li {
+    list-style: none;
+    margin-bottom: 0.75em;
+}
+
+.courseware-credits-slide li p {
+    margin: 0;
+}
+
+.courseware-credits-slide a {
+    text-decoration: none;
+    color: inherit;
 }
 
 pre {
