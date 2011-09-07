@@ -5,7 +5,7 @@ PROJECT=courseware-html
 
 DIST=$(PROJECT)-$(VERSION)
 
-XSLT:=$(shell find xslt -name '*.xslt')
+XSLT:=$(shell find xslt -name '*.xslt' -not -name '.*' -not -name '*~')
 XSLT_TESTS=$(shell find tests -name '*.xslt')
 
 ifndef XSLTEST_HOME
