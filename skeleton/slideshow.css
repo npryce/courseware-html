@@ -63,6 +63,7 @@ h1, h2, h3 {
 
 .courseware-credits-slide ul {
     list-style: none;
+    padding: 0;
 }
 
 .courseware-credits-slide li {

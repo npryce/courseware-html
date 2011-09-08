@@ -1,4 +1,11 @@
 $(function() {
+    var bindings = {
+        next: ['right', 'down', 'space', 'pagedown'],
+        prev: ['left', 'up', 'pageup'],
+        first: ['home', 'Ctrl+left', 'Ctrl+up'],
+        last: ['end', 'Ctrl+right', 'Ctrl+down']
+    };
+    
     var slide_selector = 'section.courseware-slide';
     
     function initialSlide() {
@@ -49,13 +56,6 @@ $(function() {
         last: function(slide) {
 	    return $(slide_selector).last();
         }
-    };
-    
-    var bindings = {
-        next: ['right', 'down', 'space'],
-        prev: ['left', 'up'],
-        first: ['home', 'Ctrl+left', 'Ctrl+up'],
-        last: ['end', 'Ctrl+right', 'Ctrl+down']
     };
     
     for (var name in bindings) {
