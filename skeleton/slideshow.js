@@ -43,6 +43,16 @@ $(function() {
       }
     }
     
+    function fontSizeForWidth(width) {
+      return width/40;
+    }
+    
+    function resizeFontToFitWindow() {
+      var body = $(document.body);
+      body.css('font-size', fontSizeForWidth(body.width()) + "px");
+      console.log("font-size: " + fontSizeForWidth(body.width()) + "px");
+    }
+    
     var traversals = {
         next: function(slide) {
             return slide.next(slide_selector);
@@ -65,6 +75,9 @@ $(function() {
       }
     }
     
+    $(window).bind('resize', resizeFontToFitWindow);
+    
+    resizeFontToFitWindow();
     prettyPrint();
-    currentSlide.fadeIn();
+    currentSlide.fadeIn();    
 });
