@@ -10,7 +10,6 @@ body {
     color: #000000; 
     background-color: #ffffff; 
     font-family: PatrickHand, sans-serif;
-    font-size: 40px; 
 }
 
 .courseware-slide { 
@@ -26,12 +25,26 @@ h1, h2, h3 {
     font-weight: bold;
 }
 
+h1 {
+    position: relative;
+    font-size: 300%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+h2 {
+    font-size: 200%;
+}
+
+h3 {
+    font-size: 150%;
+}
+
 .courseware-title-slide h1 {
     position: absolute;
     top: 35%;
     left: 0;
     width: 100%;
-    font-size: 64px;
     text-align: center;
 }
 
