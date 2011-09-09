@@ -80,6 +80,13 @@
 	      <cw:license href="http://example.com/bobs-own-license-terms">Bob's Own License</cw:license>
 	    </cw:visual>
 	  </cw:slide>
+	  <cw:slide>
+	    <cw:title>A Slide Without a License URL</cw:title>
+	    <cw:visual href="slide-3-visual">
+	      <cw:copyright><cw:year>2011</cw:year><cw:holder>Cliff Edge</cw:holder></cw:copyright>
+	      <cw:license>Edge Image License</cw:license>
+	    </cw:visual>
+	  </cw:slide>
 	</cw:presentation>
       </xsl:variable>
       
@@ -92,9 +99,9 @@
       
       <p>Collates any image copyright and license information into credits slide</p>
       
-      <test:assert-equal actual="count($html-slides)" expected="5"/>
+      <test:assert-equal actual="count($html-slides)" expected="6"/>
       
-      <xsl:variable name="license-slide" select="$html-slides[5]"/>
+      <xsl:variable name="license-slide" select="$html-slides[6]"/>
       
       <p>The license slide is a text slide with an additional 'courseware-credits-slide' class</p>
       
@@ -107,12 +114,12 @@
       
       <p>The credits slide is given an id</p>
       
-      <test:assert-equal actual="number($license-slide/@id)" expected="5"/>
+      <test:assert-equal actual="number($license-slide/@id)" expected="6"/>
       
       <p>Only slides with licensed images are included in the list</p>
       
       <test:assert-equal actual="count($license-slide//html:li)"
-                         expected="2"/>
+                         expected="3"/>
       
       <p>The credits are listed with slide number and title</p>
       
@@ -135,11 +142,15 @@
       <test:assert-equal actual="normalize-space($license-slide//html:li[1]/html:p[@class='courseware-credits-license'])"
                          expected="'Used under the terms of the Creative Commons Attribution 2.0 Generic license.'"/>
       
-      <p>Unknown Licenses are Described using text in the <code>license</code> element</p>
+      <p>Unknown licenses are described using text in the <code>license</code> element</p>
       
       <xsl:variable name="expected-license">Used under the terms of Bob's Own License.</xsl:variable>
       <test:assert-equal actual="normalize-space($license-slide//html:li[2]/html:p[@class='courseware-credits-license'])"
                          expected="string($expected-license)"/>
+      
+      <p>Unknown licenses do not need to have a URL</p>
+      
+      <test:assert that="not(exists($license-slide//html:li[3]/html:p[@class='courseware-credits-license']/html:a))"/>
       
       <p>Credits are in a courseware-slide-contents div</p>
       
