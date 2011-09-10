@@ -48,12 +48,11 @@ h3 {
     text-align: center;
 }
 
-.courseware-text-slide .courseware-slide-contents {
-    margin: 64px;
+.courseware-text-slide {
+    padding: 2em;
 }
 
 .courseware-text-slide .courseware-slide-title {
-    margin: 64px;
     margin-bottom: 0;
 }
 
@@ -96,10 +95,13 @@ h3 {
 pre {
     font-family: Courier-New, monospace;
     font-weight: normal;
+    font-size: 85%;
 }
 
 pre.prettyprint {
-    padding: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: 0;
 }
 
 
