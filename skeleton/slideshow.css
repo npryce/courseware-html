@@ -41,8 +41,8 @@ h3 {
 }
 
 .courseware-title-slide h1 {
-    position: absolute;
-    top: 35%;
+    position: relative;
+    top: 40%;
     left: 0;
     width: 100%;
     text-align: center;
@@ -95,7 +95,6 @@ h3 {
 
 pre {
     font-family: Courier-New, monospace;
-    font-size: 32px;
     font-weight: normal;
 }
 
