@@ -54,6 +54,14 @@ $(function() {
       body.css('font-size', fontSizeForWidth(body.width()) + "px");
     }
     
+    function startScrollingCredits() {
+        console.log("startScrollingCredits");
+    }
+
+    function stopScrollingCredits() {
+        console.log("stopScrollingCredits");
+    }
+
     var traversals = {
         next: function(slide) {
             return slide.next(slide_selector);
@@ -77,6 +85,10 @@ $(function() {
     }
     
     $(window).bind('resize', resizeFontToFitWindow);
+    $('.courseware-credits-slide').bind({
+      slideShown: startScrollingCredits,
+      slideHidden: stopScrollingCredits
+    });
     
     resizeFontToFitWindow();
     prettyPrint();
