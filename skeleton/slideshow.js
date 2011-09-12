@@ -31,8 +31,10 @@ $(function() {
       
       if (nextSlide.length != 0) {
 	transition(currentSlide, nextSlide);
+        currentSlide.trigger("slideHidden");
 	currentSlide = nextSlide;
 	document.location.hash = currentSlide.attr('id');
+        currentSlide.trigger("slideShown");
       }
     }
     
@@ -50,7 +52,6 @@ $(function() {
     function resizeFontToFitWindow() {
       var body = $(document.body);
       body.css('font-size', fontSizeForWidth(body.width()) + "px");
-      console.log("font-size: " + fontSizeForWidth(body.width()) + "px");
     }
     
     var traversals = {
