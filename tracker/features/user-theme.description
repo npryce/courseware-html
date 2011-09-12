@@ -1,0 +1,7 @@
+Extension points for the user to set their own theme.
+
+Currently the CSS makes the HTML output match the GOOS style (handwritten text, white background by default).
+
+Zuhlke will want it to match their in-house style.
+
+Therefore, we will need to separate essential CSS from the theme, and allow the user to switch between themes at build time.  Should also use CSS transitions instead of JavaScript for transitioning between slides.
