@@ -15,7 +15,7 @@
       <ul>
 	<li><p>Can name CC Attribution license</p>
 	  <test:assert that="cw:license-name('http://creativecommons.org/licenses/by/2.0/anything-else')
-			     = 'the Creative Commons Attribution 2.0 Generic license'"/>
+			     = 'the Creative Commons Attribution 2.0 Generic License'"/>
 	</li>
 	<li><p>Returns nothing for unknown license</p>
 	  <test:assert that="not(exists(cw:license-name('http://example.com/unknown-license')))"/>

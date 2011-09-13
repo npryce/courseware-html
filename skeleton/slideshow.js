@@ -55,11 +55,13 @@ $(function() {
     }
     
     function startScrollingCredits() {
-        console.log("startScrollingCredits");
+        var bottom = $(".courseware-credits-slide ul").position().bottom();
+        console.log(".courseware-credits-slide li:last").animate({
+          scrollBottom: bottom
+        }, 2000, 'ease');;
     }
 
     function stopScrollingCredits() {
-        console.log("stopScrollingCredits");
     }
 
     var traversals = {

@@ -35,63 +35,7 @@
 	<xsl:apply-templates select="cw:slide">
 	  <xsl:with-param name="intro-slide-count" select="1" tunnel="yes"/>
 	</xsl:apply-templates>
-        
-        <xsl:if test="cw:slide/cw:visual//cw:license">
-          <section id="{count(cw:slide)+2}" class="courseware-slide courseware-text-slide courseware-credits-slide">
-            <h2 class="courseware-slide-title">Image Credits</h2>
-            <div class="courseware-slide-contents">
-              <ul>
-                <xsl:apply-templates select="cw:slide[cw:visual//cw:license]" mode="image-credits"/>
-              </ul>
-            </div>
-          </section>
-        </xsl:if>
       </body>
     </html>
-  </xsl:template>
-  
-  <xsl:template match="cw:slide" mode="image-credits">
-    <xsl:variable name="slide-index"><xsl:number/></xsl:variable>
-    
-    <li>
-      <p class="courseware-credits-slide-details">
-        <a href="#{$slide-index}">Slide <xsl:value-of select="$slide-index"/>, 
-          <em><xsl:value-of select="cw:title"/></em>
-        </a>
-        <xsl:text>.</xsl:text>
-      </p>
-      <xsl:apply-templates select="cw:visual/cw:copyright"/>
-      <xsl:apply-templates select="cw:visual/cw:license"/>
-    </li>
-  </xsl:template>
-  
-  <xsl:template match="cw:visual/cw:copyright">
-    <p class="courseware-credits-copyright">
-      <xsl:text>Copyright &#xA9; </xsl:text>
-      <xsl:value-of select="cw:year"/>
-      <xsl:text> </xsl:text>
-      <xsl:value-of select="cw:holder"/>
-      <xsl:text>.</xsl:text>
-    </p>
-  </xsl:template>
-  
-  <xsl:template match="cw:visual/cw:license">
-    <p class="courseware-credits-license">
-      <xsl:text>Used under the terms of </xsl:text>
-      
-        <xsl:choose>
-          <xsl:when test="@href">
-            <xsl:variable name="license-name" select="cw:license-name(@href)"/>
-            <xsl:choose>
-              <xsl:when test="exists($license-name)">
-                <a href="{@href}"><xsl:copy-of select="$license-name"/></a>
-              </xsl:when>
-              <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
-            </xsl:choose>
-          </xsl:when>
-          <xsl:otherwise><xsl:apply-templates/></xsl:otherwise>
-        </xsl:choose>
-      <xsl:text>.</xsl:text>
-    </p>
-  </xsl:template>
+  </xsl:template>  
 </xsl:stylesheet>

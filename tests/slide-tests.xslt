@@ -81,7 +81,27 @@
 	</test:expected>
       </test:assert-transform>
       
-      <p>Licensing Information Is Not Displayed Next To the Slide</p>
+      <p>The visuals's background attribute is translated to CSS in the section's style attribute</p>
+      
+      <xsl:variable name="slide-with-background">
+	<cw:slide>
+	  <cw:title>Slide with License</cw:title>
+	    <cw:visual fileref="foo" bg="red"/>
+	</cw:slide>
+      </xsl:variable>
+      
+      <xsl:variable name="html-with-background">
+        <xsl:apply-templates select="$slide-with-background"/>
+      </xsl:variable>
+      
+      <test:assert-equal actual="string($html-with-background/html:section/@style)"
+                         expected="'background-color: red'"/>
+    </test:suite>
+    
+    <test:suite>
+      <h3>Image Copyright and Licensing</h3>
+      
+      <p>Licensing Information Is Displayed Over the Slide</p>
       
       <test:assert-transform>
 	<test:original>
@@ -101,25 +121,29 @@
 	  <section class="courseware-slide courseware-image-slide" id="1">
 	    <h2 class="courseware-slide-title">Slide with License</h2>
 	    <div class="courseware-slide-contents" style="background-image: url('{resolve-uri('foo')}')"/>
+            <div class="courseware-image-credits">
+              <p>Image copyright &#xA9; 2007 Copyright Owner. <a href="license-url">License Description</a>.</p>
+            </div>
 	  </section>
 	</test:expected>
       </test:assert-transform>
       
-      <p>The visuals's background attribute is translated to CSS in the section's style attribute</p>
+      <!--
+      <p>Known licenses are described</p>
       
-      <xsl:variable name="slide-with-background">
-	<cw:slide>
-	  <cw:title>Slide with License</cw:title>
-	    <cw:visual fileref="foo" bg="red"/>
-	</cw:slide>
-      </xsl:variable>
+      <test:assert-equal actual="normalize-space($license-slide//html:li[1]/html:p[@class='courseware-credits-license'])"
+                         expected="'Used under the terms of the Creative Commons Attribution 2.0 Generic license.'"/>
       
-      <xsl:variable name="html-with-background">
-        <xsl:apply-templates select="$slide-with-background"/>
-      </xsl:variable>
+      <p>Unknown licenses are described using text in the <code>license</code> element</p>
       
-      <test:assert-equal actual="string($html-with-background/html:section/@style)"
-                         expected="'background-color: red'"/>
+      <xsl:variable name="expected-license">Used under the terms of Bob's Own License.</xsl:variable>
+      <test:assert-equal actual="normalize-space($license-slide//html:li[2]/html:p[@class='courseware-credits-license'])"
+                         expected="string($expected-license)"/>
+      
+      <p>Unknown licenses do not need to have a URL</p>
+      
+      <test:assert that="not(exists($license-slide//html:li[3]/html:p[@class='courseware-credits-license']/html:a))"/>
+      -->
     </test:suite>
   </xsl:template>
 </xsl:stylesheet>

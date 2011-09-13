@@ -40,6 +40,11 @@ h3 {
     font-size: 150%;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .courseware-title-slide h1 {
     position: relative;
     top: 40%;
@@ -73,23 +78,23 @@ h3 {
     background-position: center;
 }
 
-.courseware-credits-slide ul {
-    list-style: none;
+.courseware-image-credits {
+    display: block;
+    position: absolute;
+    left: 0.25em;
+    bottom: 0.25em;
+    width: auto;
+    padding: 0.25em;
+    font-size: 50%;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+    border-radius: 0.25em;
+}
+
+.courseware-image-credits p {
     padding: 0;
-}
-
-.courseware-credits-slide li {
-    list-style: none;
-    margin-bottom: 0.75em;
-}
-
-.courseware-credits-slide li p {
     margin: 0;
-}
-
-.courseware-credits-slide a {
-    text-decoration: none;
-    color: inherit;
 }
 
 pre {

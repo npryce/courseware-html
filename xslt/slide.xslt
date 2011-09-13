@@ -29,7 +29,12 @@
       <xsl:if test="cw:visual/@bg">
         <xsl:attribute name="style">background-color: <xsl:value-of select="cw:visual/@bg"/></xsl:attribute>
       </xsl:if>
+      
       <xsl:apply-templates/>
+      
+      <xsl:if test="cw:visual/cw:copyright or cw:visual/cw:license">
+        <xsl:apply-templates select="cw:visual" mode="image-credits"/>
+      </xsl:if>
     </section>
   </xsl:template>
   
@@ -48,4 +53,44 @@
   </xsl:template>
   
   <xsl:template match="cw:notes"/>
+  
+  <xsl:template match="cw:visual" mode="image-credits">
+    <xsl:variable name="slide-index"><xsl:number/></xsl:variable>
+    
+    <div class="courseware-image-credits">
+      <p>
+        <xsl:apply-templates select="cw:copyright"/>
+        <xsl:text> </xsl:text>
+        <xsl:apply-templates select="cw:license"/>
+      </p>
+    </div>
+  </xsl:template>
+  
+  <xsl:template match="cw:visual/cw:copyright">
+    <xsl:text>Image copyright &#xA9; </xsl:text>
+    <xsl:value-of select="cw:year"/>
+    <xsl:text> </xsl:text>
+    <xsl:value-of select="cw:holder"/>
+    <xsl:text>.</xsl:text>
+  </xsl:template>
+  
+  <xsl:template match="cw:visual/cw:license">
+    <xsl:choose>
+      <xsl:when test="@href">
+        <xsl:variable name="license-name" select="cw:license-name(@href)"/>
+        <xsl:choose>
+          <xsl:when test="exists($license-name)">
+            <xsl:text>Used under the terms of </xsl:text><a href="{@href}"><xsl:copy-of select="$license-name"/></a>
+          </xsl:when>
+          <xsl:otherwise>
+            <a href="{@href}"><xsl:apply-templates/></a>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:apply-templates/>
+      </xsl:otherwise>
+    </xsl:choose>
+    <xsl:text>.</xsl:text>
+  </xsl:template>
 </xsl:stylesheet>
