@@ -31,10 +31,8 @@ $(function() {
       
       if (nextSlide.length != 0) {
 	transition(currentSlide, nextSlide);
-        currentSlide.trigger("slideHidden");
 	currentSlide = nextSlide;
 	document.location.hash = currentSlide.attr('id');
-        currentSlide.trigger("slideShown");
       }
     }
     
@@ -54,16 +52,6 @@ $(function() {
       body.css('font-size', fontSizeForWidth(body.width()) + "px");
     }
     
-    function startScrollingCredits() {
-        var bottom = $(".courseware-credits-slide ul").position().bottom();
-        console.log(".courseware-credits-slide li:last").animate({
-          scrollBottom: bottom
-        }, 2000, 'ease');;
-    }
-
-    function stopScrollingCredits() {
-    }
-
     var traversals = {
         next: function(slide) {
             return slide.next(slide_selector);
@@ -87,10 +75,6 @@ $(function() {
     }
     
     $(window).bind('resize', resizeFontToFitWindow);
-    $('.courseware-credits-slide').bind({
-      slideShown: startScrollingCredits,
-      slideHidden: stopScrollingCredits
-    });
     
     resizeFontToFitWindow();
     prettyPrint();
