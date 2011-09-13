@@ -75,12 +75,13 @@
   </xsl:template>
   
   <xsl:template match="cw:visual/cw:license">
+    <xsl:text>Used under the terms of </xsl:text>
     <xsl:choose>
       <xsl:when test="@href">
         <xsl:variable name="license-name" select="cw:license-name(@href)"/>
         <xsl:choose>
           <xsl:when test="exists($license-name)">
-            <xsl:text>Used under the terms of </xsl:text><a href="{@href}"><xsl:copy-of select="$license-name"/></a>
+            <a href="{@href}"><xsl:copy-of select="$license-name"/></a>
           </xsl:when>
           <xsl:otherwise>
             <a href="{@href}"><xsl:apply-templates/></a>

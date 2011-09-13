@@ -122,28 +122,88 @@
 	    <h2 class="courseware-slide-title">Slide with License</h2>
 	    <div class="courseware-slide-contents" style="background-image: url('{resolve-uri('foo')}')"/>
             <div class="courseware-image-credits">
-              <p>Image copyright &#xA9; 2007 Copyright Owner. <a href="license-url">License Description</a>.</p>
+              <p>Image copyright &#xA9; 2007 Copyright Owner. Used under the terms of <a href="license-url">License Description</a>.</p>
             </div>
 	  </section>
 	</test:expected>
       </test:assert-transform>
       
-      <!--
-      <p>Known licenses are described</p>
       
-      <test:assert-equal actual="normalize-space($license-slide//html:li[1]/html:p[@class='courseware-credits-license'])"
-                         expected="'Used under the terms of the Creative Commons Attribution 2.0 Generic license.'"/>
+      <p>Standard licenses can be identified by URL alone</p>
       
-      <p>Unknown licenses are described using text in the <code>license</code> element</p>
+      <xsl:variable name="slide-with-standard-license">
+	<cw:slide>
+	  <cw:title>Slide with Known License</cw:title>
+	  <cw:visual fileref="foo">
+	    <cw:copyright>
+	      <cw:year>2010</cw:year>
+	      <cw:holder>Bob</cw:holder>
+	    </cw:copyright>
+	    <cw:license href="http://creativecommons.org/licenses/by/2.0/"/>
+	  </cw:visual>
+	</cw:slide>
+      </xsl:variable>
       
-      <xsl:variable name="expected-license">Used under the terms of Bob's Own License.</xsl:variable>
-      <test:assert-equal actual="normalize-space($license-slide//html:li[2]/html:p[@class='courseware-credits-license'])"
-                         expected="string($expected-license)"/>
+      <xsl:variable name="transformed-slide-with-standard-license">
+        <xsl:apply-templates select="$slide-with-standard-license"/>
+      </xsl:variable>
       
-      <p>Unknown licenses do not need to have a URL</p>
+      <test:assert-equal
+         actual="normalize-space($transformed-slide-with-standard-license//html:div[@class='courseware-image-credits'])"
+         expected="'Image copyright &#xA9; 2010 Bob. Used under the terms of the Creative Commons Attribution 2.0 Generic License.'"/>
       
-      <test:assert that="not(exists($license-slide//html:li[3]/html:p[@class='courseware-credits-license']/html:a))"/>
-      -->
+      <test:assert-equal actual="string($transformed-slide-with-standard-license
+                                            //html:div[@class='courseware-image-credits']//html:a/@href)"
+                         expected="'http://creativecommons.org/licenses/by/2.0/'"/>
+      
+      <p>Non-Standard licenses are described using text in the <code>license</code> element</p>
+      
+      <xsl:variable name="slide-with-nonstandard-license">
+	<cw:slide>
+	  <cw:title>Slide with Non-Standard License</cw:title>
+	  <cw:visual fileref="foo">
+	    <cw:copyright>
+	      <cw:year>2001</cw:year>
+	      <cw:holder>Carol</cw:holder>
+	    </cw:copyright>
+	    <cw:license href="license-url">Carol License</cw:license>
+	  </cw:visual>
+	</cw:slide>
+      </xsl:variable>
+      
+      <xsl:variable name="transformed-slide-with-nonstandard-license">
+        <xsl:apply-templates select="$slide-with-nonstandard-license"/>
+      </xsl:variable>
+      
+      <test:assert-equal 
+         actual="normalize-space($transformed-slide-with-nonstandard-license//html:div[@class='courseware-image-credits'])"
+         expected="'Image copyright &#xA9; 2001 Carol. Used under the terms of Carol License.'"/>
+      
+      <test:assert-equal 
+         actual="string($transformed-slide-with-nonstandard-license//html:div[@class='courseware-image-credits']
+                          //html:a/@href)"
+         expected="'license-url'"/>
+      
+      <xsl:variable name="slide">
+	<cw:slide>
+	  <cw:title>Slide with No License URL</cw:title>
+	  <cw:visual fileref="foo">
+	    <cw:copyright>
+	      <cw:year>2012</cw:year>
+	      <cw:holder>Dave</cw:holder>
+	    </cw:copyright>
+	    <cw:license>The Big Dave License</cw:license>
+	  </cw:visual>
+	</cw:slide>
+      </xsl:variable>
+
+      <xsl:variable name="transformed">
+        <xsl:apply-templates select="$slide"/>
+      </xsl:variable>
+      
+      <test:assert that="exists($transformed//html:div[@class='courseware-image-credits'])"/>
+      <test:assert that="not(exists($transformed//html:div[@class='courseware-image-credits']//html:a))"/>
+      
     </test:suite>
   </xsl:template>
 </xsl:stylesheet>
