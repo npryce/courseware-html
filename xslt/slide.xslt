@@ -24,8 +24,9 @@
 
   <xsl:template match="cw:slide">
     <xsl:param tunnel="yes" name="intro-slide-count" select="0"/>
+    <xsl:variable name="slidenum"><xsl:number/></xsl:variable>
     
-    <section id="{index-of(..//cw:slide, .) + $intro-slide-count}" class="{cw:slide-class(.)}">
+    <section id="{$slidenum + $intro-slide-count}" class="{cw:slide-class(.)}">
       <xsl:if test="cw:visual/@bg">
         <xsl:attribute name="style">background-color: <xsl:value-of select="cw:visual/@bg"/></xsl:attribute>
       </xsl:if>
