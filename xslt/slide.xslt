@@ -50,7 +50,14 @@
   </xsl:template>
   
   <xsl:template match="cw:visual">
-    <div class="courseware-slide-contents" style="background-image: url('{resolve-uri(@fileref,base-uri())}')"/>
+    <xsl:variable name="url">
+      <xsl:apply-templates select="@fileref"/>
+    </xsl:variable>
+    <div class="courseware-slide-contents" style="background-image: url('{$url}')"/>
+  </xsl:template>
+  
+  <xsl:template match="cw:visual/@fileref">
+    <xsl:value-of select="resolve-uri(.,base-uri())"/>
   </xsl:template>
   
   <xsl:template match="cw:notes"/>
