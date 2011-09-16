@@ -42,11 +42,16 @@ check: build/testing/report.html $(XSLTEST_HOME)/test-abort-build.xslt
 	    saxon -xsl:$(XSLTEST_HOME)/test-abort-build.xslt -s:build/testing/results.xml; \
 	fi
 
-example: build/example/tutorial.html
-build/example/tutorial.html: example/tutorial.presentation $(SKELETON_FILES)
+example: build/example/tutorial.html build/example/tutorial-notes.html $(HTML_FILES)
+	cp -R $(HTML_FILES) build/example/
+
+build/example/tutorial.html: example/tutorial.presentation $(XSLT)
 	@mkdir -p $(dir $@)
 	saxon -xsl:xslt/presentation.xslt -s:$< -o:$@
-	cp -R build/$(DIST)/skeleton/* $(dir $@)
+
+build/example/tutorial-notes.html: example/tutorial.presentation $(XSLT)
+	@mkdir -p $(dir $@)
+	saxon -xsl:xslt/notes.xslt -s:$< -o:$@
 
 $(DIST_DIR)/skeleton/%: skeleton/%
 	mkdir -p $(dir $@)

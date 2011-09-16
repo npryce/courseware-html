@@ -9,7 +9,6 @@ body {
     -webkit-user-select: none;
     color: #000000; 
     background-color: #ffffff; 
-    font-family: PatrickHand, sans-serif;
 }
 
 .courseware-slide { 
@@ -19,6 +18,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    font-family: PatrickHand, sans-serif;
 }
 
 h1, h2, h3 {

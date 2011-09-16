@@ -1,0 +1,85 @@
+@font-face {
+    font-family: PatrickHand;
+    src: url('PatrickHand-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body { 
+    color: #000000; 
+    background-color: #ffffff; 
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 300%;
+    margin-bottom: 1em;
+}
+
+h2 {
+    font-size: 200%;
+    margin-bottom: 0.5em;
+}
+
+h3 {
+    font-size: 150%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.courseware-slide {
+    padding-top: 2em;
+}
+
+.courseware-slide-title {
+    white-space: nowrap;
+    overflow: visible;
+}
+
+.courseware-slide-contents {
+    width: 40em;
+    height: 30em;
+    font-size: 60%;
+    padding: 1em;
+}
+
+.courseware-text-slide .courseware-slide-contents {
+    font-family: PatrickHand, sans-serif;
+}
+
+.courseware-image-slide .courseware-slide-contents {
+    background-size: contain;
+    -moz-background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.courseware-student-notes {
+    display: absolute;
+    left: 33em;
+    height: auto;
+}
+
+.courseware-image-credits {
+    font-size: 75%;
+}
+
+pre {
+    font-family: Courier-New, monospace;
+    font-weight: normal;
+    font-size: 85%;
+}
+
+pre.prettyprint {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border: 0;
+}

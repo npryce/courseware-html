@@ -27,9 +27,7 @@
     <xsl:variable name="slidenum"><xsl:number/></xsl:variable>
     
     <section id="{$slidenum + $intro-slide-count}" class="{cw:slide-class(.)}">
-      <xsl:if test="cw:visual/@bg">
-        <xsl:attribute name="style">background-color: <xsl:value-of select="cw:visual/@bg"/></xsl:attribute>
-      </xsl:if>
+      <xsl:apply-templates select="cw:visual/@bg" mode="slide-background"/>
       
       <xsl:apply-templates/>
       
@@ -37,6 +35,10 @@
         <xsl:apply-templates select="cw:visual" mode="image-credits"/>
       </xsl:if>
     </section>
+  </xsl:template>
+  
+  <xsl:template match="cw:visual/@bg" mode="slide-background">
+    <xsl:attribute name="style">background-color: <xsl:value-of select="."/></xsl:attribute>
   </xsl:template>
   
   <xsl:template match="cw:slide/cw:title">
