@@ -1,0 +1,5 @@
+Command-line tools to run the whole build pipeline:
+ * Apply XSLT transforms to build HTML
+ * Rasterise SVGs to PNGs to avoid browser differences in SVG rendering
+ * Gather generated images and HTML into a single directory
+ 
