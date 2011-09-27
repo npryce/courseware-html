@@ -37,6 +37,13 @@
   </xsl:template>
   
   <xsl:template match="cw:visual/@bg" mode="slide-background"/>
+
+  <xsl:template match="cw:visual">
+    <xsl:variable name="url">
+      <xsl:apply-templates select="@fileref"/>
+    </xsl:variable>
+    <img class="courseware-slide-contents" src="{$url}"/>
+  </xsl:template>
   
   <xsl:template match="cw:notes/cw:student">
     <div class="courseware-student-notes">
