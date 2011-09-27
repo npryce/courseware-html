@@ -37,6 +37,7 @@ a {
 
 .courseware-slide {
     padding-top: 2em;
+    page-break-before: always;
 }
 
 .courseware-slide-title {
