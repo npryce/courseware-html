@@ -5,9 +5,14 @@
     font-style: normal;
 }
 
-body { 
+@page {
+    margin: 24pt;
+}
+
+body {
     color: #000000; 
     background-color: #ffffff; 
+    font-size: 14pt;
 }
 
 h1, h2, h3 {
@@ -35,14 +40,13 @@ a {
     color: inherit;
 }
 
+li p {
+    margin: 0;
+}
+
 .courseware-slide {
     padding-top: 2em;
     page-break-before: always;
-}
-
-.courseware-slide-title {
-    white-space: nowrap;
-    overflow: visible;
 }
 
 .courseware-slide-contents {
@@ -56,11 +60,21 @@ a {
     font-family: PatrickHand, sans-serif;
 }
 
-.courseware-image-slide .courseware-slide-contents {
+.courseware-image-slide .courseware-slide-contents:before {
+    display: block;
+    width: 40em;
+    height: 30em;
+    font-size: 60%;
+    padding: 1em;
+    background-image: attr(src, url);
     background-size: contain;
     -moz-background-size: contain;
     background-repeat: no-repeat;
     background-position: top left;
+}
+
+.courseware-image-slide .courseware-slide-contents {
+    display: block;
 }
 
 .courseware-student-notes {
