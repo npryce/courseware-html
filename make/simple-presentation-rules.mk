@@ -6,9 +6,9 @@ endif
 PRESENTATIONS:=$(wildcard *.presentation)
 PRESENTATIONS_HTML=$(PRESENTATIONS:%.presentation=$(OUTDIR)/html/%.html)
 
-VISUALS:=$(shell find * -not -path '$(OUTDIR)' -prune -type f -name '*.svg' -or -name '*.png' -or -name '*.jpg')
+VISUALS:=$(shell find * -not -name '$(OUTDIR)' -prune -type f -name '*.svg' -or -name '*.png' -or -name '*.jpg')
 
-COURSEWARE_HTML_SKELETON=$(shell find . $(COURSEWARE_HTML_HOME)/skeleton/* -type f)
+COURSEWARE_HTML_SKELETON=$(shell find $(COURSEWARE_HTML_HOME)/skeleton/* -type f)
 
 HTML_RESOURCES=\
 	$(COURSEWARE_HTML_SKELETON:$(COURSEWARE_HTML_HOME)/skeleton/%=$(OUTDIR)/html/%) \
