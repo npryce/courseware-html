@@ -1,4 +1,9 @@
 
+
+ifndef COURSEWARE_HOME
+$(error COURSEWARE_HOME variable not set)
+endif
+
 ifndef OUTDIR
 OUTDIR=output
 endif
