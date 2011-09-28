@@ -14,10 +14,14 @@ HTML_RESOURCES=\
 	$(COURSEWARE_HTML_SKELETON:$(COURSEWARE_HTML_HOME)/skeleton/%=$(OUTDIR)/html/%) \
 	$(subst svg,png,$(VISUALS:%=$(OUTDIR)/html/%))
 
-all: $(PRESENTATIONS:%.presentation=$(OUTDIR)/html/%.html) \
-     $(PRESENTATIONS:%.presentation=$(OUTDIR)/html/%-notes.html) \
-     $(HTML_RESOURCES)
+all: html pdf
 
+html: $(PRESENTATIONS:%.presentation=$(OUTDIR)/html/%.html)
+html: $(PRESENTATIONS:%.presentation=$(OUTDIR)/html/%-notes.html)
+html: $(HTML_RESOURCES)
+
+pdf: $(PRESENTATIONS:%.presentation=$(OUTDIR)/pdf/%-notes-2up.pdf)
+pdf: $(PRESENTATIONS:%.presentation=$(OUTDIR)/pdf/%-notes-4up.pdf)
 
 $(OUTDIR)/html/%.html: %.presentation $(OUTDIR)/xslt/presentation.xslt
 	@mkdir -p $(dir $@)
@@ -43,9 +47,19 @@ $(OUTDIR)/html/%: $(COURSEWARE_HTML_HOME)/skeleton/%
 	@mkdir -p $(dir $@)
 	cp $< $@
 
+$(OUTDIR)/pdf/%.pdf: $(OUTDIR)/html/%.html $(HTML_RESOURCES)
+	@mkdir -p $(dir $@)
+	prince $< -o $@
+
+%-4up.pdf: %.pdf
+	$(COURSEWARE_HOME)/bin/pdfnup 4 $< $@
+
+%-2up.pdf: %.pdf
+	$(COURSEWARE_HOME)/bin/pdfnup 2 $< $@
+
 clean:
 	rm -rf $(OUTDIR)
 
 again: clean all
 
-.PHONY: all clean again
+.PHONY: all html pdf clean again
