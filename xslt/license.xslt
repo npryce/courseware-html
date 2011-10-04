@@ -8,6 +8,22 @@
     <license>
       <url>http://creativecommons.org/licenses/by/2.0/</url>
       <name>the Creative Commons Attribution 2.0 Generic License</name>
+      <short>CC BY 2.0</short>
+    </license>
+    <license>
+      <url>http://creativecommons.org/licenses/by/3.0/</url>
+      <name>the Creative Commons Attribution 3.0 Unported License</name>
+      <short>CC BY 3.0</short>
+    </license>
+    <license>
+      <url>http://creativecommons.org/licenses/by-sa/3.0/</url>
+      <name>the Creative Commons Attribution Attribution-ShareAlike 3.0 Unported License</name>
+      <short>CC BY-SA 3.0</short>
+    </license>
+    <license>
+      <url>http://creativecommons.org/licenses/by-sa/2.0/</url>
+      <name>the Creative Commons Attribution Attribution-ShareAlike 3.0 Generic License</name>
+      <short>CC BY-SA 2.0</short>
     </license>
   </xsl:variable>
   
