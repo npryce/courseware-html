@@ -8,16 +8,19 @@ ifndef OUTDIR
 OUTDIR=output
 endif
 
+ifndef PRESENTATIONS
 PRESENTATIONS:=$(wildcard *.presentation)
+endif
+
 PRESENTATIONS_HTML=$(PRESENTATIONS:%.presentation=$(OUTDIR)/html/%.html)
 
+ifndef VISUALS
 VISUALS:=$(shell find * -not -name '$(OUTDIR)' -prune -type f -name '*.svg' -or -name '*.png' -or -name '*.jpg')
+endif
 
 COURSEWARE_HTML_SKELETON=$(shell find $(COURSEWARE_HTML_HOME)/skeleton/* -type f)
 
-HTML_RESOURCES=\
-	$(COURSEWARE_HTML_SKELETON:$(COURSEWARE_HTML_HOME)/skeleton/%=$(OUTDIR)/html/%) \
-	$(subst svg,png,$(VISUALS:%=$(OUTDIR)/html/%))
+HTML_RESOURCES=$(subst svg,png,$(VISUALS:%=$(OUTDIR)/html/%))
 
 all: html pdf
 
@@ -28,13 +31,15 @@ html: $(HTML_RESOURCES)
 pdf: $(PRESENTATIONS:%.presentation=$(OUTDIR)/pdf/%-notes-2up.pdf)
 pdf: $(PRESENTATIONS:%.presentation=$(OUTDIR)/pdf/%-notes-4up.pdf)
 
-$(OUTDIR)/html/%.html: %.presentation $(OUTDIR)/xslt/presentation.xslt
+$(OUTDIR)/html/%.html: %.presentation $(OUTDIR)/xslt/presentation.xslt $(COURSEWARE_HTML_SKELETON)
 	@mkdir -p $(dir $@)
 	saxon -xsl:$(COURSEWARE_HTML_HOME)/xslt/fixns.xslt -s:$< | saxon -xsl:$(OUTDIR)/xslt/presentation.xslt -s:- -o:$@
+	cp -Ru $(COURSEWARE_HTML_HOME)/skeleton/* $(dir $@)
 
 $(OUTDIR)/html/%-notes.html: %.presentation $(OUTDIR)/xslt/notes.xslt
 	@mkdir -p $(dir $@)
 	saxon -xsl:$(COURSEWARE_HTML_HOME)/xslt/fixns.xslt -s:$< | saxon -xsl:$(OUTDIR)/xslt/notes.xslt -s:- -o:$@
+	cp -Ru $(COURSEWARE_HTML_HOME)/skeleton/* $(dir $@)
 
 $(OUTDIR)/xslt/%.xslt: $(COURSEWARE_HTML_HOME)/xslt/bodge-svg.xslt.template
 	@mkdir -p $(dir $@)
@@ -45,10 +50,6 @@ $(OUTDIR)/html/%.png: %.svg
 	$(COURSEWARE_HTML_HOME)/bin/svg-rasterizer -d $@ -maxw 2048 -maxh 1536 -m image/png $<
 
 $(OUTDIR)/html/%: %
-	@mkdir -p $(dir $@)
-	cp $< $@
-
-$(OUTDIR)/html/%: $(COURSEWARE_HTML_HOME)/skeleton/%
 	@mkdir -p $(dir $@)
 	cp $< $@
 
