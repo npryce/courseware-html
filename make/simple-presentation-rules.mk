@@ -69,3 +69,4 @@ clean:
 again: clean all
 
 .PHONY: all html pdf clean again
+.PRECIOUS: $(PRESENTATIONS:%.presentation=$(OUTDIR)/pdf/%-notes.pdf)
